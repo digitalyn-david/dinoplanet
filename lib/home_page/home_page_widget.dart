@@ -1,5 +1,8 @@
+import '../auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../flutter_flow/flutter_flow_widgets.dart';
+import '../login_page/login_page_widget.dart';
 import '../search_results_page/search_results_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -33,7 +36,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
             Stack(
               children: [
                 Align(
-                  alignment: Alignment(0, -0.98),
+                  alignment: Alignment(0, 0),
                   child: Image.asset(
                     'assets/images/6ae5df97-2f01-4069-a980-0ec17af58c85.png',
                     width: double.infinity,
@@ -157,6 +160,39 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           ),
                         )
                       ],
+                    ),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment(0.88, -0.78),
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
+                    child: FFButtonWidget(
+                      onPressed: () async {
+                        await signOut();
+                        await Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => LoginPageWidget(),
+                          ),
+                          (r) => false,
+                        );
+                      },
+                      text: 'Log out',
+                      options: FFButtonOptions(
+                        width: 80,
+                        height: 40,
+                        color: Color(0xFF8B97A2),
+                        textStyle: FlutterFlowTheme.subtitle2.override(
+                          fontFamily: 'Poppins',
+                          color: Colors.white,
+                        ),
+                        borderSide: BorderSide(
+                          color: Colors.transparent,
+                          width: 1,
+                        ),
+                        borderRadius: 12,
+                      ),
                     ),
                   ),
                 )
