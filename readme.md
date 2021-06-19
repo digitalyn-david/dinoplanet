@@ -1,1 +1,0 @@
-# DInoPlanet Example page
