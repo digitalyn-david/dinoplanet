@@ -1,48 +1,40 @@
 {
   "project_info": {
-    "project_number": "996585139099",
-    "project_id": "fluttermet",
-    "storage_bucket": "fluttermet.appspot.com"
+    "project_number": "877102858020",
+    "project_id": "dinoplanet-9083f",
+    "storage_bucket": "dinoplanet-9083f.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:996585139099:android:1e36ca168827ee6552cf3e",
+        "mobilesdk_app_id": "1:877102858020:android:04c5fb313721d1966e3db1",
         "android_client_info": {
-          "package_name": "com.flutterflow.fluttermet"
+          "package_name": "com.flutterflow.david"
         }
       },
       "oauth_client": [
         {
-          "client_id": "996585139099-rivuqb3586ou7iimokqagorsmnfh23o0.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.flutterflow.fluttermet",
-            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
-          }
-        },
-        {
-          "client_id": "996585139099-187f7h1tdp5gapma8f2g569ki3pr0o02.apps.googleusercontent.com",
+          "client_id": "877102858020-qi2tnhna8cls05em57fd6a85u9gr2uvf.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAzWPSmwNXIVRCaDUJdTCbPaY6kytlkziA"
+          "current_key": "AIzaSyC7UbH5ClEFOsZS_-d-GXzMSZIF11O1kxo"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "996585139099-187f7h1tdp5gapma8f2g569ki3pr0o02.apps.googleusercontent.com",
+              "client_id": "877102858020-qi2tnhna8cls05em57fd6a85u9gr2uvf.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "996585139099-h5euoodv05lrgpi0hmghcqreno540v5n.apps.googleusercontent.com",
+              "client_id": "877102858020-dltc13hpfbr9o9vu6qmlenngnsao0410.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.flutterflow.fluttermet"
+                "bundle_id": "com.flutterflow.david"
               }
             }
           ]
