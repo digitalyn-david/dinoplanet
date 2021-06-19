@@ -298,55 +298,48 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       )
                                     ],
                                   ),
-                                  isIos
-                                      ? Padding(
-                                          padding:
-                                              EdgeInsets.fromLTRB(0, 0, 0, 15),
-                                          child: FFButtonWidget(
-                                            onPressed: () async {
-                                              final user =
-                                                  await signInWithApple(
-                                                      context);
-                                              if (user == null) {
-                                                return;
-                                              }
-                                              await Navigator
-                                                  .pushAndRemoveUntil(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      NavBarPage(
-                                                          initialPage:
-                                                              'HomePage'),
-                                                ),
-                                                (r) => false,
-                                              );
-                                            },
-                                            text: 'Continue as Guest',
-                                            icon: Icon(
-                                              Icons.person,
-                                              color: Color(0xFF4B39EF),
-                                              size: 20,
-                                            ),
-                                            options: FFButtonOptions(
-                                              width: 200,
-                                              height: 44,
-                                              color: Colors.white,
-                                              textStyle: GoogleFonts.getFont(
-                                                'Open Sans',
-                                                color: Colors.black,
-                                                fontSize: 15,
-                                              ),
-                                              elevation: 4,
-                                              borderSide: BorderSide(
-                                                color: Colors.transparent,
-                                                width: 0,
-                                              ),
-                                              borderRadius: 12,
-                                            ),
+                                  Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 0, 0, 15),
+                                    child: FFButtonWidget(
+                                      onPressed: () async {
+                                        final user =
+                                            await signInAnonymously(context);
+                                        if (user == null) {
+                                          return;
+                                        }
+                                        await Navigator.pushAndRemoveUntil(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => NavBarPage(
+                                                initialPage: 'HomePage'),
                                           ),
-                                        )
-                                      : Container(),
+                                          (r) => false,
+                                        );
+                                      },
+                                      text: 'Continue as Guest',
+                                      icon: Icon(
+                                        Icons.person,
+                                        color: Color(0xFF4B39EF),
+                                        size: 20,
+                                      ),
+                                      options: FFButtonOptions(
+                                        width: 200,
+                                        height: 44,
+                                        color: Colors.white,
+                                        textStyle: GoogleFonts.getFont(
+                                          'Open Sans',
+                                          color: Colors.black,
+                                          fontSize: 15,
+                                        ),
+                                        elevation: 4,
+                                        borderSide: BorderSide(
+                                          color: Colors.transparent,
+                                          width: 0,
+                                        ),
+                                        borderRadius: 12,
+                                      ),
+                                    ),
+                                  ),
                                   Align(
                                     alignment: Alignment(0, 0),
                                     child: Padding(
