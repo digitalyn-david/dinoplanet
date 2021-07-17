@@ -34,111 +34,97 @@ class _SearchResultPageWidgetState extends State<SearchResultPageWidget> {
         children: [
           Container(
             width: MediaQuery.of(context).size.width,
-            height: 108,
             decoration: BoxDecoration(
               color: Colors.white,
             ),
-            child: Padding(
-              padding: EdgeInsets.fromLTRB(0, 24, 0, 0),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * 0.95,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(8),
-                        border: Border.all(
-                          color: Color(0xFFEEEEEE),
-                          width: 2,
-                        ),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.fromLTRB(8, 0, 8, 0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(4, 0, 4, 0),
-                              child: InkWell(
-                                onTap: () async {
-                                  setState(() => searchResults = null);
-                                  await ClothesRecord.search(
-                                    term: textController.text,
-                                  )
-                                      .then((r) => searchResults = r)
-                                      .onError((_, __) => searchResults = [])
-                                      .whenComplete(() => setState(() {}));
-                                },
-                                child: Icon(
-                                  Icons.search_rounded,
-                                  color: Color(0xFF95A1AC),
-                                  size: 24,
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              child: Padding(
-                                padding: EdgeInsets.fromLTRB(4, 0, 0, 0),
-                                child: TextFormField(
-                                  controller: textController,
-                                  obscureText: false,
-                                  decoration: InputDecoration(
-                                    labelText: 'Search events here...',
-                                    labelStyle:
-                                        FlutterFlowTheme.bodyText1.override(
-                                      fontFamily: 'Playfair Display',
-                                      color: Color(0xFF95A1AC),
-                                    ),
-                                    enabledBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Color(0x00000000),
-                                        width: 1,
-                                      ),
-                                      borderRadius: const BorderRadius.only(
-                                        topLeft: Radius.circular(4.0),
-                                        topRight: Radius.circular(4.0),
-                                      ),
-                                    ),
-                                    focusedBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Color(0x00000000),
-                                        width: 1,
-                                      ),
-                                      borderRadius: const BorderRadius.only(
-                                        topLeft: Radius.circular(4.0),
-                                        topRight: Radius.circular(4.0),
-                                      ),
-                                    ),
-                                  ),
-                                  style: FlutterFlowTheme.bodyText1.override(
-                                    fontFamily: 'Playfair Display',
-                                    color: Color(0xFF95A1AC),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              child: Align(
-                                alignment: Alignment(0.95, 0),
-                                child: Icon(
-                                  Icons.tune_rounded,
-                                  color: Color(0xFF95A1AC),
-                                  size: 24,
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width * 0.95,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(
+                        color: Color(0xFFEEEEEE),
+                        width: 2,
                       ),
                     ),
-                  )
-                ],
-              ),
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(8, 0, 8, 0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(4, 0, 4, 0),
+                            child: InkWell(
+                              onTap: () async {
+                                setState(() => searchResults = null);
+                                await ClothesRecord.search(
+                                  term: textController.text,
+                                )
+                                    .then((r) => searchResults = r)
+                                    .onError((_, __) => searchResults = [])
+                                    .whenComplete(() => setState(() {}));
+                              },
+                              child: Icon(
+                                Icons.search_rounded,
+                                color: Color(0xFF95A1AC),
+                                size: 24,
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding: EdgeInsets.fromLTRB(4, 0, 0, 0),
+                              child: TextFormField(
+                                controller: textController,
+                                obscureText: false,
+                                decoration: InputDecoration(
+                                  labelText: 'Search clothes here...',
+                                  labelStyle:
+                                      FlutterFlowTheme.bodyText1.override(
+                                    fontFamily: 'Roboto',
+                                    color: Color(0xFF95A1AC),
+                                  ),
+                                  enabledBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Color(0x00000000),
+                                      width: 1,
+                                    ),
+                                    borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(4.0),
+                                      topRight: Radius.circular(4.0),
+                                    ),
+                                  ),
+                                  focusedBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Color(0x00000000),
+                                      width: 1,
+                                    ),
+                                    borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(4.0),
+                                      topRight: Radius.circular(4.0),
+                                    ),
+                                  ),
+                                ),
+                                style: FlutterFlowTheme.bodyText1.override(
+                                  fontFamily: 'Roboto',
+                                  color: Color(0xFF95A1AC),
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                )
+              ],
             ),
           ),
           Expanded(
@@ -215,8 +201,8 @@ class _SearchResultPageWidgetState extends State<SearchResultPageWidget> {
                                           child: ClipRRect(
                                             borderRadius:
                                                 BorderRadius.circular(8),
-                                            child: Image.asset(
-                                              'assets/images/imageList@2x.png',
+                                            child: Image.network(
+                                              clothesItem.picture,
                                               width: 74,
                                               height: 74,
                                               fit: BoxFit.cover,
@@ -238,14 +224,11 @@ class _SearchResultPageWidgetState extends State<SearchResultPageWidget> {
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Text(
-                                                  clothesItem.color,
-                                                  style: FlutterFlowTheme
-                                                      .subtitle1
+                                                  clothesItem.name,
+                                                  style: FlutterFlowTheme.title1
                                                       .override(
                                                     fontFamily:
                                                         'Playfair Display',
-                                                    color: Color(0xFF15212B),
-                                                    fontWeight: FontWeight.w500,
                                                   ),
                                                 )
                                               ],
@@ -255,11 +238,9 @@ class _SearchResultPageWidgetState extends State<SearchResultPageWidget> {
                                               children: [
                                                 Text(
                                                   clothesItem.type,
-                                                  style: FlutterFlowTheme
-                                                      .bodyText2
+                                                  style: FlutterFlowTheme.title2
                                                       .override(
-                                                    fontFamily:
-                                                        'Playfair Display',
+                                                    fontFamily: 'Poppins',
                                                   ),
                                                 )
                                               ],
@@ -268,15 +249,10 @@ class _SearchResultPageWidgetState extends State<SearchResultPageWidget> {
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Text(
-                                                  '1.7mi',
-                                                  style: FlutterFlowTheme
-                                                      .bodyText1
+                                                  clothesItem.color,
+                                                  style: FlutterFlowTheme.title3
                                                       .override(
-                                                    fontFamily:
-                                                        'Playfair Display',
-                                                    color: FlutterFlowTheme
-                                                        .primaryColor,
-                                                    fontWeight: FontWeight.w500,
+                                                    fontFamily: 'Poppins',
                                                   ),
                                                 )
                                               ],
