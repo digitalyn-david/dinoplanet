@@ -14,9 +14,7 @@ class SearchResultPageWidget extends StatefulWidget {
 }
 
 class _SearchResultPageWidgetState extends State<SearchResultPageWidget> {
-  List<ClothesRecord> searchResults1 = [];
-  List<ClothesRecord> searchResults2 = [];
-  List<ClothesRecord> searchResults3 = [];
+  List<ClothesRecord> searchResults = [];
   TextEditingController textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -48,117 +46,93 @@ class _SearchResultPageWidgetState extends State<SearchResultPageWidget> {
                 children: [
                   Padding(
                     padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
-                    child: InkWell(
-                      onTap: () async {
-                        setState(() => searchResults1 = null);
-                        await ClothesRecord.search(
-                          term: textController.text,
-                        )
-                            .then((r) => searchResults1 = r)
-                            .onError((_, __) => searchResults1 = [])
-                            .whenComplete(() => setState(() {}));
-                      },
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.95,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(
-                            color: Color(0xFFEEEEEE),
-                            width: 2,
-                          ),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 0.95,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(
+                          color: Color(0xFFEEEEEE),
+                          width: 2,
                         ),
-                        child: Padding(
-                          padding: EdgeInsets.fromLTRB(8, 0, 8, 0),
-                          child: InkWell(
-                            onTap: () async {
-                              setState(() => searchResults2 = null);
-                              await ClothesRecord.search(
-                                term: textController.text,
-                              )
-                                  .then((r) => searchResults2 = r)
-                                  .onError((_, __) => searchResults2 = [])
-                                  .whenComplete(() => setState(() {}));
-                            },
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.fromLTRB(4, 0, 4, 0),
-                                  child: InkWell(
-                                    onTap: () async {
-                                      setState(() => searchResults3 = null);
-                                      await ClothesRecord.search(
-                                        term: textController.text,
-                                      )
-                                          .then((r) => searchResults3 = r)
-                                          .onError(
-                                              (_, __) => searchResults3 = [])
-                                          .whenComplete(() => setState(() {}));
-                                    },
-                                    child: Icon(
-                                      Icons.search_rounded,
-                                      color: Color(0xFF95A1AC),
-                                      size: 24,
-                                    ),
-                                  ),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(8, 0, 8, 0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(4, 0, 4, 0),
+                              child: InkWell(
+                                onTap: () async {
+                                  setState(() => searchResults = null);
+                                  await ClothesRecord.search(
+                                    term: textController.text,
+                                  )
+                                      .then((r) => searchResults = r)
+                                      .onError((_, __) => searchResults = [])
+                                      .whenComplete(() => setState(() {}));
+                                },
+                                child: Icon(
+                                  Icons.search_rounded,
+                                  color: Color(0xFF95A1AC),
+                                  size: 24,
                                 ),
-                                Expanded(
-                                  child: Padding(
-                                    padding: EdgeInsets.fromLTRB(4, 0, 0, 0),
-                                    child: TextFormField(
-                                      controller: textController,
-                                      obscureText: false,
-                                      decoration: InputDecoration(
-                                        labelText: 'Search events here...',
-                                        labelStyle:
-                                            FlutterFlowTheme.bodyText1.override(
-                                          fontFamily: 'Playfair Display',
-                                          color: Color(0xFF95A1AC),
-                                        ),
-                                        enabledBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: Color(0x00000000),
-                                            width: 1,
-                                          ),
-                                          borderRadius: const BorderRadius.only(
-                                            topLeft: Radius.circular(4.0),
-                                            topRight: Radius.circular(4.0),
-                                          ),
-                                        ),
-                                        focusedBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: Color(0x00000000),
-                                            width: 1,
-                                          ),
-                                          borderRadius: const BorderRadius.only(
-                                            topLeft: Radius.circular(4.0),
-                                            topRight: Radius.circular(4.0),
-                                          ),
-                                        ),
-                                      ),
-                                      style:
-                                          FlutterFlowTheme.bodyText1.override(
-                                        fontFamily: 'Playfair Display',
-                                        color: Color(0xFF95A1AC),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Align(
-                                    alignment: Alignment(0.95, 0),
-                                    child: Icon(
-                                      Icons.tune_rounded,
-                                      color: Color(0xFF95A1AC),
-                                      size: 24,
-                                    ),
-                                  ),
-                                )
-                              ],
+                              ),
                             ),
-                          ),
+                            Expanded(
+                              child: Padding(
+                                padding: EdgeInsets.fromLTRB(4, 0, 0, 0),
+                                child: TextFormField(
+                                  controller: textController,
+                                  obscureText: false,
+                                  decoration: InputDecoration(
+                                    labelText: 'Search events here...',
+                                    labelStyle:
+                                        FlutterFlowTheme.bodyText1.override(
+                                      fontFamily: 'Playfair Display',
+                                      color: Color(0xFF95A1AC),
+                                    ),
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
+                                      ),
+                                    ),
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
+                                      ),
+                                    ),
+                                  ),
+                                  style: FlutterFlowTheme.bodyText1.override(
+                                    fontFamily: 'Playfair Display',
+                                    color: Color(0xFF95A1AC),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: Align(
+                                alignment: Alignment(0.95, 0),
+                                child: Icon(
+                                  Icons.tune_rounded,
+                                  color: Color(0xFF95A1AC),
+                                  size: 24,
+                                ),
+                              ),
+                            )
+                          ],
                         ),
                       ),
                     ),
@@ -168,13 +142,9 @@ class _SearchResultPageWidgetState extends State<SearchResultPageWidget> {
             ),
           ),
           Expanded(
-            child: FutureBuilder<List<ClothesRecord>>(
-              future: ClothesRecord.search(
-                term: textController.text,
-              ),
-              builder: (context, snapshot) {
-                // Customize what your widget looks like when it's loading.
-                if (!snapshot.hasData) {
+            child: Builder(
+              builder: (context) {
+                if (searchResults == null) {
                   return Center(
                     child: SizedBox(
                       width: 50,
@@ -185,23 +155,13 @@ class _SearchResultPageWidgetState extends State<SearchResultPageWidget> {
                     ),
                   );
                 }
-                List<ClothesRecord> listViewClothesRecordList = snapshot.data;
-                // Customize what your widget looks like with no search results.
-                if (snapshot.data.isEmpty) {
-                  return Container(
-                    height: 100,
-                    child: Center(
-                      child: Text('No results.'),
-                    ),
-                  );
-                }
+                final clothes = searchResults?.toList() ?? [];
                 return ListView.builder(
                   padding: EdgeInsets.zero,
                   scrollDirection: Axis.vertical,
-                  itemCount: listViewClothesRecordList.length,
-                  itemBuilder: (context, listViewIndex) {
-                    final listViewClothesRecord =
-                        listViewClothesRecordList[listViewIndex];
+                  itemCount: clothes.length,
+                  itemBuilder: (context, clothesIndex) {
+                    final clothesItem = clothes[clothesIndex];
                     return FutureBuilder<dynamic>(
                       future: getDepartmentsCall(),
                       builder: (context, snapshot) {
@@ -278,7 +238,7 @@ class _SearchResultPageWidgetState extends State<SearchResultPageWidget> {
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Text(
-                                                  listViewClothesRecord.color,
+                                                  clothesItem.color,
                                                   style: FlutterFlowTheme
                                                       .subtitle1
                                                       .override(
@@ -294,7 +254,7 @@ class _SearchResultPageWidgetState extends State<SearchResultPageWidget> {
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Text(
-                                                  listViewClothesRecord.type,
+                                                  clothesItem.type,
                                                   style: FlutterFlowTheme
                                                       .bodyText2
                                                       .override(
