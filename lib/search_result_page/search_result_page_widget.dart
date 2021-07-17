@@ -170,7 +170,7 @@ class _SearchResultPageWidgetState extends State<SearchResultPageWidget> {
           Expanded(
             child: FutureBuilder<List<ClothesRecord>>(
               future: ClothesRecord.search(
-                term: 'searchTerm',
+                term: textController.text,
               ),
               builder: (context, snapshot) {
                 // Customize what your widget looks like when it's loading.
