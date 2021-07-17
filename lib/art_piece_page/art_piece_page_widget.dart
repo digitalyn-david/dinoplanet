@@ -32,7 +32,15 @@ class _ArtPiecePageWidgetState extends State<ArtPiecePageWidget> {
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
-          return Center(child: CircularProgressIndicator());
+          return Center(
+            child: SizedBox(
+              width: 50,
+              height: 50,
+              child: CircularProgressIndicator(
+                color: FlutterFlowTheme.primaryColor,
+              ),
+            ),
+          );
         }
         final artPiecePageUsersRecord = snapshot.data;
         return Scaffold(
@@ -67,12 +75,11 @@ class _ArtPiecePageWidgetState extends State<ArtPiecePageWidget> {
                           .contains(favoritesElement)
                       ? FieldValue.arrayRemove([favoritesElement])
                       : FieldValue.arrayUnion([favoritesElement]);
-                  final usersRecordData = {
+                  final usersUpdateData = {
                     'favorites': favoritesUpdate,
                   };
-
                   await artPiecePageUsersRecord.reference
-                      .update(usersRecordData);
+                      .update(usersUpdateData);
                 },
                 value: artPiecePageUsersRecord.favorites
                     .contains(getJsonField(widget.artPiece, r'$.objectID')),
@@ -330,12 +337,11 @@ class _ArtPiecePageWidgetState extends State<ArtPiecePageWidget> {
                     alignment: Alignment(0, 0),
                     child: FFButtonWidget(
                       onPressed: () async {
-                        final usersRecordData = {
+                        final usersUpdateData = {
                           'favorites': FieldValue.arrayUnion(
                               [getJsonField(widget.artPiece, r'$.objectID')]),
                         };
-
-                        await currentUserReference.update(usersRecordData);
+                        await currentUserReference.update(usersUpdateData);
                         await Navigator.push(
                           context,
                           MaterialPageRoute(
