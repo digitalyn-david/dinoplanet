@@ -168,8 +168,10 @@ class _SearchResultPageWidgetState extends State<SearchResultPageWidget> {
             ),
           ),
           Expanded(
-            child: FutureBuilder<dynamic>(
-              future: getDepartmentsCall(),
+            child: FutureBuilder<List<ClothesRecord>>(
+              future: ClothesRecord.search(
+                term: 'searchTerm',
+              ),
               builder: (context, snapshot) {
                 // Customize what your widget looks like when it's loading.
                 if (!snapshot.hasData) {
@@ -183,182 +185,167 @@ class _SearchResultPageWidgetState extends State<SearchResultPageWidget> {
                     ),
                   );
                 }
-                final listViewGetDepartmentsResponse = snapshot.data;
-                return Builder(
-                  builder: (context) {
-                    if (searchResults3 == null) {
-                      return Center(
-                        child: SizedBox(
-                          width: 50,
-                          height: 50,
-                          child: CircularProgressIndicator(
-                            color: FlutterFlowTheme.primaryColor,
-                          ),
-                        ),
-                      );
-                    }
-                    final clothes =
-                        (searchResults3?.toList() ?? []).take(10).toList();
-                    return ListView.builder(
-                      padding: EdgeInsets.zero,
-                      scrollDirection: Axis.vertical,
-                      itemCount: clothes.length,
-                      itemBuilder: (context, clothesIndex) {
-                        final clothesItem = clothes[clothesIndex];
-                        return FutureBuilder<dynamic>(
-                          future: getDepartmentsCall(),
-                          builder: (context, snapshot) {
-                            // Customize what your widget looks like when it's loading.
-                            if (!snapshot.hasData) {
-                              return Center(
-                                child: SizedBox(
-                                  width: 50,
-                                  height: 50,
-                                  child: CircularProgressIndicator(
-                                    color: FlutterFlowTheme.primaryColor,
-                                  ),
-                                ),
-                              );
-                            }
-                            final shopListItemGetDepartmentsResponse =
-                                snapshot.data;
-                            return Padding(
-                              padding: EdgeInsets.fromLTRB(0, 2, 0, 0),
-                              child: Container(
-                                width: MediaQuery.of(context).size.width,
-                                height: 90,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                ),
-                                child: FutureBuilder<dynamic>(
-                                  future: getDepartmentsCall(),
-                                  builder: (context, snapshot) {
-                                    // Customize what your widget looks like when it's loading.
-                                    if (!snapshot.hasData) {
-                                      return Center(
-                                        child: SizedBox(
-                                          width: 50,
-                                          height: 50,
-                                          child: CircularProgressIndicator(
-                                            color:
-                                                FlutterFlowTheme.primaryColor,
-                                          ),
-                                        ),
-                                      );
-                                    }
-                                    final rowGetDepartmentsResponse =
-                                        snapshot.data;
-                                    return Row(
+                List<ClothesRecord> listViewClothesRecordList = snapshot.data;
+                // Customize what your widget looks like with no search results.
+                if (snapshot.data.isEmpty) {
+                  return Container(
+                    height: 100,
+                    child: Center(
+                      child: Text('No results.'),
+                    ),
+                  );
+                }
+                return ListView.builder(
+                  padding: EdgeInsets.zero,
+                  scrollDirection: Axis.vertical,
+                  itemCount: listViewClothesRecordList.length,
+                  itemBuilder: (context, listViewIndex) {
+                    final listViewClothesRecord =
+                        listViewClothesRecordList[listViewIndex];
+                    return FutureBuilder<dynamic>(
+                      future: getDepartmentsCall(),
+                      builder: (context, snapshot) {
+                        // Customize what your widget looks like when it's loading.
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: SizedBox(
+                              width: 50,
+                              height: 50,
+                              child: CircularProgressIndicator(
+                                color: FlutterFlowTheme.primaryColor,
+                              ),
+                            ),
+                          );
+                        }
+                        final shopListItemGetDepartmentsResponse =
+                            snapshot.data;
+                        return Padding(
+                          padding: EdgeInsets.fromLTRB(0, 2, 0, 0),
+                          child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: 90,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                            ),
+                            child: FutureBuilder<dynamic>(
+                              future: getDepartmentsCall(),
+                              builder: (context, snapshot) {
+                                // Customize what your widget looks like when it's loading.
+                                if (!snapshot.hasData) {
+                                  return Center(
+                                    child: SizedBox(
+                                      width: 50,
+                                      height: 50,
+                                      child: CircularProgressIndicator(
+                                        color: FlutterFlowTheme.primaryColor,
+                                      ),
+                                    ),
+                                  );
+                                }
+                                final rowGetDepartmentsResponse = snapshot.data;
+                                return Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
-                                        Column(
+                                        Padding(
+                                          padding:
+                                              EdgeInsets.fromLTRB(8, 8, 8, 8),
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                            child: Image.asset(
+                                              'assets/images/imageList@2x.png',
+                                              width: 74,
+                                              height: 74,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    Expanded(
+                                      child: Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(8, 1, 0, 0),
+                                        child: Column(
                                           mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
                                           children: [
-                                            Padding(
-                                              padding: EdgeInsets.fromLTRB(
-                                                  8, 8, 8, 8),
-                                              child: ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(8),
-                                                child: Image.asset(
-                                                  'assets/images/imageList@2x.png',
-                                                  width: 74,
-                                                  height: 74,
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                        Expanded(
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsets.fromLTRB(8, 1, 0, 0),
-                                            child: Column(
+                                            Row(
                                               mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
                                               children: [
-                                                Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Text(
-                                                      clothesItem.type,
-                                                      style: FlutterFlowTheme
-                                                          .subtitle1
-                                                          .override(
-                                                        fontFamily:
-                                                            'Playfair Display',
-                                                        color:
-                                                            Color(0xFF15212B),
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                      ),
-                                                    )
-                                                  ],
-                                                ),
-                                                Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Text(
-                                                      clothesItem.color,
-                                                      style: FlutterFlowTheme
-                                                          .bodyText2
-                                                          .override(
-                                                        fontFamily:
-                                                            'Playfair Display',
-                                                      ),
-                                                    )
-                                                  ],
-                                                ),
-                                                Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Text(
-                                                      '1.7mi',
-                                                      style: FlutterFlowTheme
-                                                          .bodyText1
-                                                          .override(
-                                                        fontFamily:
-                                                            'Playfair Display',
-                                                        color: FlutterFlowTheme
-                                                            .primaryColor,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                      ),
-                                                    )
-                                                  ],
+                                                Text(
+                                                  listViewClothesRecord.color,
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily:
+                                                        'Playfair Display',
+                                                    color: Color(0xFF15212B),
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
                                                 )
                                               ],
                                             ),
-                                          ),
-                                        ),
-                                        Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Expanded(
-                                              child: Padding(
-                                                padding: EdgeInsets.fromLTRB(
-                                                    0, 0, 8, 0),
-                                                child: Icon(
-                                                  Icons.chevron_right_outlined,
-                                                  color: Color(0xFF95A1AC),
-                                                  size: 24,
-                                                ),
-                                              ),
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Text(
+                                                  listViewClothesRecord.type,
+                                                  style: FlutterFlowTheme
+                                                      .bodyText2
+                                                      .override(
+                                                    fontFamily:
+                                                        'Playfair Display',
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Text(
+                                                  '1.7mi',
+                                                  style: FlutterFlowTheme
+                                                      .bodyText1
+                                                      .override(
+                                                    fontFamily:
+                                                        'Playfair Display',
+                                                    color: FlutterFlowTheme
+                                                        .primaryColor,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                )
+                                              ],
                                             )
                                           ],
+                                        ),
+                                      ),
+                                    ),
+                                    Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Expanded(
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsets.fromLTRB(0, 0, 8, 0),
+                                            child: Icon(
+                                              Icons.chevron_right_outlined,
+                                              color: Color(0xFF95A1AC),
+                                              size: 24,
+                                            ),
+                                          ),
                                         )
                                       ],
-                                    );
-                                  },
-                                ),
-                              ),
-                            );
-                          },
+                                    )
+                                  ],
+                                );
+                              },
+                            ),
+                          ),
                         );
                       },
                     );
