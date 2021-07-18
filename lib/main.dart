@@ -5,6 +5,7 @@ import 'package:david/login_page/login_page_widget.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'home_page/home_page_widget.dart';
 import 'my_collection/my_collection_widget.dart';
+import 'upload/upload_widget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -75,6 +76,7 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'HomePage': HomePageWidget(),
       'MyCollection': MyCollectionWidget(),
+      'Upload': UploadWidget(),
     };
     return Scaffold(
       body: tabs[_currentPage],
@@ -100,16 +102,23 @@ class _NavBarPageState extends State<NavBarPage> {
               Icons.favorite,
               size: 26,
             ),
-            label: 'Home',
+            label: 'Collection',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.upload_file,
+              size: 24,
+            ),
+            label: 'Upload',
           )
         ],
         backgroundColor: Color(0xFF14181B),
         currentIndex: tabs.keys.toList().indexOf(_currentPage),
-        selectedItemColor: FlutterFlowTheme.primaryColor,
-        unselectedItemColor: FlutterFlowTheme.tertiaryColor,
+        selectedItemColor: Color(0xFFEED3AE),
+        unselectedItemColor: Colors.white,
         onTap: (i) => setState(() => _currentPage = tabs.keys.toList()[i]),
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
+        showSelectedLabels: true,
+        showUnselectedLabels: true,
         type: BottomNavigationBarType.fixed,
       ),
     );

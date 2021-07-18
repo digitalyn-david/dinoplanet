@@ -2,7 +2,6 @@ import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -38,7 +37,7 @@ class _SearchResultPageWidgetState extends State<SearchResultPageWidget> {
               color: Colors.white,
             ),
             child: Padding(
-              padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+              padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -206,8 +205,8 @@ class _SearchResultPageWidgetState extends State<SearchResultPageWidget> {
                                                 BorderRadius.circular(8),
                                             child: Image.network(
                                               clothesItem.picture,
-                                              width: 74,
-                                              height: 74,
+                                              width: 100,
+                                              height: 100,
                                               fit: BoxFit.contain,
                                             ),
                                           ),
@@ -290,40 +289,6 @@ class _SearchResultPageWidgetState extends State<SearchResultPageWidget> {
                   },
                 );
               },
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.fromLTRB(0, 0, 0, 80),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 16, 16, 0),
-                  child: FFButtonWidget(
-                    onPressed: () {
-                      print('Button pressed ...');
-                    },
-                    text: 'Map View',
-                    options: FFButtonOptions(
-                      width: 95,
-                      height: 40,
-                      color: FlutterFlowTheme.primaryColor,
-                      textStyle: FlutterFlowTheme.bodyText1.override(
-                        fontFamily: 'Playfair Display',
-                        color: Colors.white,
-                      ),
-                      elevation: 2,
-                      borderSide: BorderSide(
-                        color: Colors.transparent,
-                        width: 1,
-                      ),
-                      borderRadius: 8,
-                    ),
-                  ),
-                )
-              ],
             ),
           )
         ],

@@ -5,6 +5,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../login_page/login_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 
 class MyCollectionWidget extends StatefulWidget {
   MyCollectionWidget({Key key}) : super(key: key);
@@ -42,7 +43,7 @@ class _MyCollectionWidgetState extends State<MyCollectionWidget> {
             title: Text(
               'My Collection',
               style: FlutterFlowTheme.bodyText2.override(
-                fontFamily: 'Playfair Display',
+                fontFamily: 'Source Sans Pro',
                 fontSize: 34,
                 fontWeight: FontWeight.bold,
               ),
@@ -57,8 +58,11 @@ class _MyCollectionWidgetState extends State<MyCollectionWidget> {
                       await signOut();
                       await Navigator.pushAndRemoveUntil(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => LoginPageWidget(),
+                        PageTransition(
+                          type: PageTransitionType.leftToRight,
+                          duration: Duration(milliseconds: 300),
+                          reverseDuration: Duration(milliseconds: 300),
+                          child: LoginPageWidget(),
                         ),
                         (r) => false,
                       );
@@ -66,7 +70,7 @@ class _MyCollectionWidgetState extends State<MyCollectionWidget> {
                     child: Text(
                       'Logout',
                       style: FlutterFlowTheme.bodyText1.override(
-                        fontFamily: 'Playfair Display',
+                        fontFamily: 'Source Sans Pro',
                       ),
                     ),
                   ),

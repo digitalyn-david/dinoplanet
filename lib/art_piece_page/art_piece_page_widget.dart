@@ -9,6 +9,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 
 class ArtPiecePageWidget extends StatefulWidget {
   ArtPiecePageWidget({
@@ -61,7 +62,7 @@ class _ArtPiecePageWidgetState extends State<ArtPiecePageWidget> {
             title: Text(
               getJsonField(widget.artPiece, r'$.title').toString(),
               style: FlutterFlowTheme.bodyText2.override(
-                fontFamily: 'Playfair Display',
+                fontFamily: 'Source Sans Pro',
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
@@ -124,7 +125,7 @@ class _ArtPiecePageWidgetState extends State<ArtPiecePageWidget> {
                                 getJsonField(widget.artPiece, r'$.title')
                                     .toString(),
                                 style: FlutterFlowTheme.title1.override(
-                                  fontFamily: 'Playfair Display',
+                                  fontFamily: 'Roboto',
                                   fontSize: 24,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -142,7 +143,7 @@ class _ArtPiecePageWidgetState extends State<ArtPiecePageWidget> {
                                             .toString(),
                                         style:
                                             FlutterFlowTheme.bodyText2.override(
-                                          fontFamily: 'Playfair Display',
+                                          fontFamily: 'Source Sans Pro',
                                           color: FlutterFlowTheme.tertiaryColor,
                                           fontSize: 15,
                                           fontWeight: FontWeight.normal,
@@ -156,7 +157,7 @@ class _ArtPiecePageWidgetState extends State<ArtPiecePageWidget> {
                                             .toString(),
                                         style:
                                             FlutterFlowTheme.bodyText2.override(
-                                          fontFamily: 'Playfair Display',
+                                          fontFamily: 'Source Sans Pro',
                                           color: Colors.black,
                                           fontSize: 15,
                                           fontWeight: FontWeight.bold,
@@ -178,7 +179,7 @@ class _ArtPiecePageWidgetState extends State<ArtPiecePageWidget> {
                                   Text(
                                     'Title',
                                     style: FlutterFlowTheme.bodyText2.override(
-                                      fontFamily: 'Playfair Display',
+                                      fontFamily: 'Source Sans Pro',
                                       color: Color(0xFF1E2429),
                                       fontSize: 12,
                                       fontWeight: FontWeight.bold,
@@ -191,7 +192,7 @@ class _ArtPiecePageWidgetState extends State<ArtPiecePageWidget> {
                                           .toString(),
                                       style:
                                           FlutterFlowTheme.bodyText1.override(
-                                        fontFamily: 'Playfair Display',
+                                        fontFamily: 'Source Sans Pro',
                                         fontSize: 16,
                                       ),
                                     ),
@@ -210,7 +211,7 @@ class _ArtPiecePageWidgetState extends State<ArtPiecePageWidget> {
                                   Text(
                                     'Maker',
                                     style: FlutterFlowTheme.bodyText2.override(
-                                      fontFamily: 'Playfair Display',
+                                      fontFamily: 'Source Sans Pro',
                                       color: Color(0xFF1E2429),
                                       fontSize: 12,
                                       fontWeight: FontWeight.bold,
@@ -224,7 +225,7 @@ class _ArtPiecePageWidgetState extends State<ArtPiecePageWidget> {
                                           .toString(),
                                       style:
                                           FlutterFlowTheme.bodyText1.override(
-                                        fontFamily: 'Playfair Display',
+                                        fontFamily: 'Source Sans Pro',
                                         fontSize: 16,
                                       ),
                                     ),
@@ -243,7 +244,7 @@ class _ArtPiecePageWidgetState extends State<ArtPiecePageWidget> {
                                   Text(
                                     'Department',
                                     style: FlutterFlowTheme.bodyText2.override(
-                                      fontFamily: 'Playfair Display',
+                                      fontFamily: 'Source Sans Pro',
                                       color: Color(0xFF1E2429),
                                       fontSize: 12,
                                       fontWeight: FontWeight.bold,
@@ -257,7 +258,7 @@ class _ArtPiecePageWidgetState extends State<ArtPiecePageWidget> {
                                           .toString(),
                                       style:
                                           FlutterFlowTheme.bodyText1.override(
-                                        fontFamily: 'Playfair Display',
+                                        fontFamily: 'Source Sans Pro',
                                         fontSize: 16,
                                       ),
                                     ),
@@ -276,7 +277,7 @@ class _ArtPiecePageWidgetState extends State<ArtPiecePageWidget> {
                                   Text(
                                     'Accesion Number',
                                     style: FlutterFlowTheme.bodyText2.override(
-                                      fontFamily: 'Playfair Display',
+                                      fontFamily: 'Source Sans Pro',
                                       color: Color(0xFF1E2429),
                                       fontSize: 12,
                                       fontWeight: FontWeight.bold,
@@ -290,7 +291,7 @@ class _ArtPiecePageWidgetState extends State<ArtPiecePageWidget> {
                                           .toString(),
                                       style:
                                           FlutterFlowTheme.bodyText1.override(
-                                        fontFamily: 'Playfair Display',
+                                        fontFamily: 'Source Sans Pro',
                                         fontSize: 16,
                                       ),
                                     ),
@@ -311,7 +312,7 @@ class _ArtPiecePageWidgetState extends State<ArtPiecePageWidget> {
                                       'View on Met Website',
                                       style:
                                           FlutterFlowTheme.bodyText1.override(
-                                        fontFamily: 'Playfair Display',
+                                        fontFamily: 'Source Sans Pro',
                                         color: Colors.black,
                                         fontSize: 16,
                                         fontWeight: FontWeight.w600,
@@ -344,9 +345,11 @@ class _ArtPiecePageWidgetState extends State<ArtPiecePageWidget> {
                         await currentUserReference.update(usersUpdateData);
                         await Navigator.push(
                           context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                NavBarPage(initialPage: 'MyCollection'),
+                          PageTransition(
+                            type: PageTransitionType.leftToRight,
+                            duration: Duration(milliseconds: 300),
+                            reverseDuration: Duration(milliseconds: 300),
+                            child: NavBarPage(initialPage: 'MyCollection'),
                           ),
                         );
                       },
@@ -361,7 +364,7 @@ class _ArtPiecePageWidgetState extends State<ArtPiecePageWidget> {
                         height: 50,
                         color: FlutterFlowTheme.primaryColor,
                         textStyle: FlutterFlowTheme.subtitle1.override(
-                          fontFamily: 'Playfair Display',
+                          fontFamily: 'Montserrat',
                           color: Colors.white,
                           fontSize: 14,
                           fontWeight: FontWeight.bold,

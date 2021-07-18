@@ -57,7 +57,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           child: Text(
                             'Dino\\nPlanet                       ',
                             style: FlutterFlowTheme.bodyText1.override(
-                              fontFamily: 'Playfair Display',
+                              fontFamily: 'Source Sans Pro',
                               color: FlutterFlowTheme.secondaryColor,
                               fontSize: 40,
                               fontWeight: FontWeight.bold,
@@ -108,7 +108,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           hintText: 'Search for T-shirts',
                                           hintStyle: FlutterFlowTheme.bodyText1
                                               .override(
-                                            fontFamily: 'Playfair Display',
+                                            fontFamily: 'Source Sans Pro',
                                             fontSize: 16,
                                           ),
                                           enabledBorder: UnderlineInputBorder(
@@ -136,7 +136,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         ),
                                         style:
                                             FlutterFlowTheme.bodyText1.override(
-                                          fontFamily: 'Playfair Display',
+                                          fontFamily: 'Source Sans Pro',
                                           fontSize: 16,
                                         ),
                                       ),
@@ -154,7 +154,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             child: Text(
                               'Products',
                               style: FlutterFlowTheme.bodyText1.override(
-                                fontFamily: 'Playfair Display',
+                                fontFamily: 'Source Sans Pro',
                                 fontSize: 12,
                                 fontWeight: FontWeight.w600,
                               ),
@@ -174,8 +174,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         await signOut();
                         await Navigator.pushAndRemoveUntil(
                           context,
-                          MaterialPageRoute(
-                            builder: (context) => LoginPageWidget(),
+                          PageTransition(
+                            type: PageTransitionType.leftToRight,
+                            duration: Duration(milliseconds: 300),
+                            reverseDuration: Duration(milliseconds: 300),
+                            child: LoginPageWidget(),
                           ),
                           (r) => false,
                         );

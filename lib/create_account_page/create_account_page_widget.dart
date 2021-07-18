@@ -6,6 +6,7 @@ import '../login_page/login_page_widget.dart';
 import '../main.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 
 class CreateAccountPageWidget extends StatefulWidget {
   CreateAccountPageWidget({Key key}) : super(key: key);
@@ -217,8 +218,12 @@ class _CreateAccountPageWidgetState extends State<CreateAccountPageWidget> {
 
                                       await Navigator.pushAndRemoveUntil(
                                         context,
-                                        MaterialPageRoute(
-                                          builder: (context) => NavBarPage(
+                                        PageTransition(
+                                          type: PageTransitionType.leftToRight,
+                                          duration: Duration(milliseconds: 300),
+                                          reverseDuration:
+                                              Duration(milliseconds: 300),
+                                          child: NavBarPage(
                                               initialPage: 'HomePage'),
                                         ),
                                         (r) => false,
@@ -247,8 +252,12 @@ class _CreateAccountPageWidgetState extends State<CreateAccountPageWidget> {
                                   onTap: () async {
                                     await Navigator.pushAndRemoveUntil(
                                       context,
-                                      MaterialPageRoute(
-                                        builder: (context) => LoginPageWidget(),
+                                      PageTransition(
+                                        type: PageTransitionType.leftToRight,
+                                        duration: Duration(milliseconds: 300),
+                                        reverseDuration:
+                                            Duration(milliseconds: 300),
+                                        child: LoginPageWidget(),
                                       ),
                                       (r) => false,
                                     );

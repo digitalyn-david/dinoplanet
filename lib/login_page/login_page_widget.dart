@@ -7,6 +7,7 @@ import '../main.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 
 class LoginPageWidget extends StatefulWidget {
   LoginPageWidget({Key key}) : super(key: key);
@@ -242,11 +243,15 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
 
                                             await Navigator.pushAndRemoveUntil(
                                               context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    NavBarPage(
-                                                        initialPage:
-                                                            'HomePage'),
+                                              PageTransition(
+                                                type: PageTransitionType
+                                                    .leftToRight,
+                                                duration:
+                                                    Duration(milliseconds: 300),
+                                                reverseDuration:
+                                                    Duration(milliseconds: 300),
+                                                child: NavBarPage(
+                                                    initialPage: 'HomePage'),
                                               ),
                                               (r) => false,
                                             );
@@ -278,8 +283,14 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                           onTap: () async {
                                             await Navigator.pushAndRemoveUntil(
                                               context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
+                                              PageTransition(
+                                                type: PageTransitionType
+                                                    .leftToRight,
+                                                duration:
+                                                    Duration(milliseconds: 300),
+                                                reverseDuration:
+                                                    Duration(milliseconds: 300),
+                                                child:
                                                     CreateAccountPageWidget(),
                                               ),
                                               (r) => false,
@@ -309,8 +320,14 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         }
                                         await Navigator.pushAndRemoveUntil(
                                           context,
-                                          MaterialPageRoute(
-                                            builder: (context) => NavBarPage(
+                                          PageTransition(
+                                            type:
+                                                PageTransitionType.leftToRight,
+                                            duration:
+                                                Duration(milliseconds: 300),
+                                            reverseDuration:
+                                                Duration(milliseconds: 300),
+                                            child: NavBarPage(
                                                 initialPage: 'HomePage'),
                                           ),
                                           (r) => false,
@@ -362,11 +379,16 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                   await Navigator
                                                       .pushAndRemoveUntil(
                                                     context,
-                                                    MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          NavBarPage(
-                                                              initialPage:
-                                                                  'HomePage'),
+                                                    PageTransition(
+                                                      type: PageTransitionType
+                                                          .leftToRight,
+                                                      duration: Duration(
+                                                          milliseconds: 300),
+                                                      reverseDuration: Duration(
+                                                          milliseconds: 300),
+                                                      child: NavBarPage(
+                                                          initialPage:
+                                                              'HomePage'),
                                                     ),
                                                     (r) => false,
                                                   );
@@ -431,11 +453,15 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                               await Navigator
                                                   .pushAndRemoveUntil(
                                                 context,
-                                                MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      NavBarPage(
-                                                          initialPage:
-                                                              'HomePage'),
+                                                PageTransition(
+                                                  type: PageTransitionType
+                                                      .leftToRight,
+                                                  duration: Duration(
+                                                      milliseconds: 300),
+                                                  reverseDuration: Duration(
+                                                      milliseconds: 300),
+                                                  child: NavBarPage(
+                                                      initialPage: 'HomePage'),
                                                 ),
                                                 (r) => false,
                                               );
@@ -484,11 +510,16 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                 await Navigator
                                                     .pushAndRemoveUntil(
                                                   context,
-                                                  MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        NavBarPage(
-                                                            initialPage:
-                                                                'HomePage'),
+                                                  PageTransition(
+                                                    type: PageTransitionType
+                                                        .leftToRight,
+                                                    duration: Duration(
+                                                        milliseconds: 300),
+                                                    reverseDuration: Duration(
+                                                        milliseconds: 300),
+                                                    child: NavBarPage(
+                                                        initialPage:
+                                                            'HomePage'),
                                                   ),
                                                   (r) => false,
                                                 );
