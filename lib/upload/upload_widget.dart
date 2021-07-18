@@ -418,6 +418,15 @@ class _UploadWidgetState extends State<UploadWidget> {
                       await ClothesRecord.collection
                           .doc()
                           .set(clothesCreateData);
+                      await Navigator.push(
+                        context,
+                        PageTransition(
+                          type: PageTransitionType.fade,
+                          duration: Duration(milliseconds: 500),
+                          reverseDuration: Duration(milliseconds: 500),
+                          child: NavBarPage(initialPage: 'SearchResultPage'),
+                        ),
+                      );
                     },
                     text: 'Upload product',
                     options: FFButtonOptions(

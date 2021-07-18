@@ -170,8 +170,7 @@ class _SearchResultPageWidgetState extends State<SearchResultPageWidget> {
                         return Padding(
                           padding: EdgeInsets.fromLTRB(0, 2, 0, 0),
                           child: Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: 90,
+                            height: 115,
                             decoration: BoxDecoration(
                               color: Colors.white,
                             ),

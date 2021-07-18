@@ -3,6 +3,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../login_page/login_page_widget.dart';
+import '../main.dart';
 import '../search_result_page/search_result_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -88,7 +89,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           duration: Duration(milliseconds: 300),
                                           reverseDuration:
                                               Duration(milliseconds: 300),
-                                          child: SearchResultPageWidget(),
+                                          child: NavBarPage(
+                                              initialPage: 'SearchResultPage'),
                                         ),
                                       );
                                     },
