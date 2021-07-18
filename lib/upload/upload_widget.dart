@@ -1,7 +1,10 @@
+import '../auth/auth_util.dart';
+import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../main.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
@@ -95,7 +98,7 @@ class _UploadWidgetState extends State<UploadWidget> {
                                         ),
                                         Expanded(
                                           child: Text(
-                                            '\$50.00',
+                                            'DKK50.00',
                                             textAlign: TextAlign.end,
                                             style: FlutterFlowTheme.subtitle2
                                                 .override(
@@ -204,10 +207,10 @@ class _UploadWidgetState extends State<UploadWidget> {
                               width: 1,
                             ),
                             borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(0),
-                              bottomRight: Radius.circular(0),
-                              topLeft: Radius.circular(0),
-                              topRight: Radius.circular(0),
+                              bottomLeft: Radius.circular(10),
+                              bottomRight: Radius.circular(10),
+                              topLeft: Radius.circular(10),
+                              topRight: Radius.circular(10),
                             ),
                           ),
                           focusedBorder: UnderlineInputBorder(
@@ -216,10 +219,10 @@ class _UploadWidgetState extends State<UploadWidget> {
                               width: 1,
                             ),
                             borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(0),
-                              bottomRight: Radius.circular(0),
-                              topLeft: Radius.circular(0),
-                              topRight: Radius.circular(0),
+                              bottomLeft: Radius.circular(10),
+                              bottomRight: Radius.circular(10),
+                              topLeft: Radius.circular(10),
+                              topRight: Radius.circular(10),
                             ),
                           ),
                           filled: true,
@@ -258,10 +261,10 @@ class _UploadWidgetState extends State<UploadWidget> {
                               width: 1,
                             ),
                             borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(0),
-                              bottomRight: Radius.circular(0),
-                              topLeft: Radius.circular(0),
-                              topRight: Radius.circular(0),
+                              bottomLeft: Radius.circular(10),
+                              bottomRight: Radius.circular(10),
+                              topLeft: Radius.circular(10),
+                              topRight: Radius.circular(10),
                             ),
                           ),
                           focusedBorder: UnderlineInputBorder(
@@ -270,10 +273,10 @@ class _UploadWidgetState extends State<UploadWidget> {
                               width: 1,
                             ),
                             borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(0),
-                              bottomRight: Radius.circular(0),
-                              topLeft: Radius.circular(0),
-                              topRight: Radius.circular(0),
+                              bottomLeft: Radius.circular(10),
+                              bottomRight: Radius.circular(10),
+                              topLeft: Radius.circular(10),
+                              topRight: Radius.circular(10),
                             ),
                           ),
                           filled: true,
@@ -312,10 +315,10 @@ class _UploadWidgetState extends State<UploadWidget> {
                               width: 1,
                             ),
                             borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(0),
-                              bottomRight: Radius.circular(0),
-                              topLeft: Radius.circular(0),
-                              topRight: Radius.circular(0),
+                              bottomLeft: Radius.circular(10),
+                              bottomRight: Radius.circular(10),
+                              topLeft: Radius.circular(10),
+                              topRight: Radius.circular(10),
                             ),
                           ),
                           focusedBorder: UnderlineInputBorder(
@@ -324,10 +327,10 @@ class _UploadWidgetState extends State<UploadWidget> {
                               width: 1,
                             ),
                             borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(0),
-                              bottomRight: Radius.circular(0),
-                              topLeft: Radius.circular(0),
-                              topRight: Radius.circular(0),
+                              bottomLeft: Radius.circular(10),
+                              bottomRight: Radius.circular(10),
+                              topLeft: Radius.circular(10),
+                              topRight: Radius.circular(10),
                             ),
                           ),
                           filled: true,
@@ -366,10 +369,10 @@ class _UploadWidgetState extends State<UploadWidget> {
                               width: 1,
                             ),
                             borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(0),
-                              bottomRight: Radius.circular(0),
-                              topLeft: Radius.circular(0),
-                              topRight: Radius.circular(0),
+                              bottomLeft: Radius.circular(10),
+                              bottomRight: Radius.circular(10),
+                              topLeft: Radius.circular(10),
+                              topRight: Radius.circular(10),
                             ),
                           ),
                           focusedBorder: UnderlineInputBorder(
@@ -378,10 +381,10 @@ class _UploadWidgetState extends State<UploadWidget> {
                               width: 1,
                             ),
                             borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(0),
-                              bottomRight: Radius.circular(0),
-                              topLeft: Radius.circular(0),
-                              topRight: Radius.circular(0),
+                              bottomLeft: Radius.circular(10),
+                              bottomRight: Radius.circular(10),
+                              topLeft: Radius.circular(10),
+                              topRight: Radius.circular(10),
                             ),
                           ),
                           filled: true,
@@ -405,8 +408,16 @@ class _UploadWidgetState extends State<UploadWidget> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   FFButtonWidget(
-                    onPressed: () {
-                      print('Button pressed ...');
+                    onPressed: () async {
+                      final clothesCreateData = createClothesRecordData(
+                        color: textController2.text,
+                        type: textController3.text,
+                        name: textController1.text,
+                        picture: textController4.text,
+                      );
+                      await ClothesRecord.collection
+                          .doc()
+                          .set(clothesCreateData);
                     },
                     text: 'Upload product',
                     options: FFButtonOptions(
@@ -422,7 +433,7 @@ class _UploadWidgetState extends State<UploadWidget> {
                         color: Colors.transparent,
                         width: 1,
                       ),
-                      borderRadius: 8,
+                      borderRadius: 100,
                     ),
                   )
                 ],
