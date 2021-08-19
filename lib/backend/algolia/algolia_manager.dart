@@ -66,7 +66,7 @@ class FFAlgoliaManager {
 
     AlgoliaQuery query = algolia.index(index);
     if (term != null) {
-      query = query.search(term);
+      query = query.query(term);
     }
     if (maxResults != null) {
       query = query.setHitsPerPage(maxResults);

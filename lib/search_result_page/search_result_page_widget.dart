@@ -46,7 +46,7 @@ class _SearchResultPageWidgetState extends State<SearchResultPageWidget> {
                     padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
                     child: Container(
                       width: MediaQuery.of(context).size.width * 0.95,
-                      height: 50,
+                      height: 52,
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(8),
@@ -60,28 +60,25 @@ class _SearchResultPageWidgetState extends State<SearchResultPageWidget> {
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(4, 0, 4, 0),
-                              child: InkWell(
-                                onTap: () async {
-                                  setState(() => searchResults = null);
-                                  await ClothesRecord.search(
-                                    term: textController.text,
-                                  )
-                                      .then((r) => searchResults = r)
-                                      .onError((_, __) => searchResults = [])
-                                      .whenComplete(() => setState(() {}));
-                                },
-                                child: Icon(
-                                  Icons.search_rounded,
-                                  color: Color(0xFF95A1AC),
-                                  size: 24,
-                                ),
+                            InkWell(
+                              onTap: () async {
+                                setState(() => searchResults = null);
+                                await ClothesRecord.search(
+                                  term: textController.text,
+                                )
+                                    .then((r) => searchResults = r)
+                                    .onError((_, __) => searchResults = [])
+                                    .whenComplete(() => setState(() {}));
+                              },
+                              child: Icon(
+                                Icons.search,
+                                color: Color(0xFF95A1AC),
+                                size: 24,
                               ),
                             ),
                             Expanded(
                               child: Padding(
-                                padding: EdgeInsets.fromLTRB(4, 0, 0, 0),
+                                padding: EdgeInsets.fromLTRB(5, 0, 0, 2),
                                 child: TextFormField(
                                   controller: textController,
                                   obscureText: false,
@@ -89,8 +86,9 @@ class _SearchResultPageWidgetState extends State<SearchResultPageWidget> {
                                     labelText: 'Search clothes here...',
                                     labelStyle:
                                         FlutterFlowTheme.bodyText1.override(
-                                      fontFamily: 'Roboto',
+                                      fontFamily: 'Source Sans Pro',
                                       color: Color(0xFF95A1AC),
+                                      fontSize: 16,
                                     ),
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
@@ -114,8 +112,9 @@ class _SearchResultPageWidgetState extends State<SearchResultPageWidget> {
                                     ),
                                   ),
                                   style: FlutterFlowTheme.bodyText1.override(
-                                    fontFamily: 'Roboto',
+                                    fontFamily: 'Source Sans Pro',
                                     color: Color(0xFF95A1AC),
+                                    fontSize: 16,
                                   ),
                                 ),
                               ),
@@ -150,26 +149,26 @@ class _SearchResultPageWidgetState extends State<SearchResultPageWidget> {
                   itemCount: clothes.length,
                   itemBuilder: (context, clothesIndex) {
                     final clothesItem = clothes[clothesIndex];
-                    return FutureBuilder<dynamic>(
-                      future: getDepartmentsCall(),
-                      builder: (context, snapshot) {
-                        // Customize what your widget looks like when it's loading.
-                        if (!snapshot.hasData) {
-                          return Center(
-                            child: SizedBox(
-                              width: 50,
-                              height: 50,
-                              child: CircularProgressIndicator(
-                                color: FlutterFlowTheme.primaryColor,
+                    return Padding(
+                      padding: EdgeInsets.fromLTRB(0, 2, 0, 0),
+                      child: FutureBuilder<dynamic>(
+                        future: getDepartmentsCall(),
+                        builder: (context, snapshot) {
+                          // Customize what your widget looks like when it's loading.
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: SizedBox(
+                                width: 50,
+                                height: 50,
+                                child: CircularProgressIndicator(
+                                  color: FlutterFlowTheme.primaryColor,
+                                ),
                               ),
-                            ),
-                          );
-                        }
-                        final shopListItemGetDepartmentsResponse =
-                            snapshot.data;
-                        return Padding(
-                          padding: EdgeInsets.fromLTRB(0, 2, 0, 0),
-                          child: Container(
+                            );
+                          }
+                          final shopListItemGetDepartmentsResponse =
+                              snapshot.data;
+                          return Container(
                             height: 115,
                             decoration: BoxDecoration(
                               color: Colors.white,
@@ -281,9 +280,9 @@ class _SearchResultPageWidgetState extends State<SearchResultPageWidget> {
                                 );
                               },
                             ),
-                          ),
-                        );
-                      },
+                          );
+                        },
+                      ),
                     );
                   },
                 );

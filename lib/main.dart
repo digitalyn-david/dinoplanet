@@ -4,9 +4,9 @@ import 'auth/firebase_user_provider.dart';
 import 'package:david/login_page/login_page_widget.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'home_page/home_page_widget.dart';
-import 'my_collection/my_collection_widget.dart';
 import 'search_result_page/search_result_page_widget.dart';
 import 'upload/upload_widget.dart';
+import 'cart_page/cart_page_widget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -76,9 +76,9 @@ class _NavBarPageState extends State<NavBarPage> {
   Widget build(BuildContext context) {
     final tabs = {
       'HomePage': HomePageWidget(),
-      'MyCollection': MyCollectionWidget(),
       'SearchResultPage': SearchResultPageWidget(),
       'Upload': UploadWidget(),
+      'CartPage': CartPageWidget(),
     };
     return Scaffold(
       body: tabs[_currentPage],
@@ -86,10 +86,6 @@ class _NavBarPageState extends State<NavBarPage> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.home_outlined,
-              size: 26,
-            ),
-            activeIcon: Icon(
               Icons.home,
               size: 26,
             ),
@@ -97,37 +93,30 @@ class _NavBarPageState extends State<NavBarPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.favorite_border,
-              size: 26,
-            ),
-            activeIcon: Icon(
-              Icons.favorite,
-              size: 26,
-            ),
-            label: 'Collection',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.shopping_basket_outlined,
+              Icons.search,
               size: 24,
             ),
-            activeIcon: Icon(
-              Icons.shopping_basket_sharp,
-              size: 24,
-            ),
-            label: 'Shop',
+            label: 'Search',
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.upload_file,
-              size: 24,
+              size: 26,
             ),
             label: 'Upload',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.shopping_cart,
+              color: Color(0xFF9E9E9E),
+              size: 26,
+            ),
+            label: 'Cart',
           )
         ],
         backgroundColor: Color(0xFFEED3AE),
         currentIndex: tabs.keys.toList().indexOf(_currentPage),
-        selectedItemColor: Color(0xFF5F513D),
+        selectedItemColor: Colors.black,
         unselectedItemColor: Colors.white,
         onTap: (i) => setState(() => _currentPage = tabs.keys.toList()[i]),
         showSelectedLabels: true,

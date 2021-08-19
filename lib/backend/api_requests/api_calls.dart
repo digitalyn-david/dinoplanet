@@ -5,8 +5,8 @@ Future<dynamic> getArtPieceCall({
 }) =>
     ApiManager.instance.makeApiCall(
       callName: 'Get Art Piece',
-      apiDomain: 'collectionapi.metmuseum.org',
-      apiEndpoint: 'public/collection/v1/objects/$objectID',
+      apiUrl:
+          'https://collectionapi.metmuseum.org/public/collection/v1/objects/$objectID',
       callType: ApiCallType.GET,
       headers: {},
       params: {},
@@ -15,8 +15,8 @@ Future<dynamic> getArtPieceCall({
 
 Future<dynamic> getDepartmentsCall() => ApiManager.instance.makeApiCall(
       callName: 'Get Departments',
-      apiDomain: 'collectionapi.metmuseum.org',
-      apiEndpoint: 'public/collection/v1/departments',
+      apiUrl:
+          'https://collectionapi.metmuseum.org/public/collection/v1/departments',
       callType: ApiCallType.GET,
       headers: {},
       params: {},
@@ -28,8 +28,7 @@ Future<dynamic> searchArtCall({
 }) =>
     ApiManager.instance.makeApiCall(
       callName: 'Search Art',
-      apiDomain: 'collectionapi.metmuseum.org',
-      apiEndpoint: 'public/collection/v1/search',
+      apiUrl: 'https://collectionapi.metmuseum.org/public/collection/v1/search',
       callType: ApiCallType.GET,
       headers: {},
       params: {
@@ -45,8 +44,7 @@ Future<dynamic> departmentHighlightsCall({
 }) =>
     ApiManager.instance.makeApiCall(
       callName: 'Department Highlights',
-      apiDomain: 'collectionapi.metmuseum.org',
-      apiEndpoint: 'public/collection/v1/search',
+      apiUrl: 'https://collectionapi.metmuseum.org/public/collection/v1/search',
       callType: ApiCallType.GET,
       headers: {},
       params: {
