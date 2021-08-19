@@ -13,7 +13,8 @@ class SearchResultPageWidget extends StatefulWidget {
 }
 
 class _SearchResultPageWidgetState extends State<SearchResultPageWidget> {
-  List<ClothesRecord> searchResults = [];
+  List<ClothesRecord> searchResults1 = [];
+  List<ClothesRecord> searchResults2 = [];
   TextEditingController textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -27,7 +28,7 @@ class _SearchResultPageWidgetState extends State<SearchResultPageWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: Color(0xFFF1F4F8),
+      backgroundColor: Colors.white,
       body: Column(
         mainAxisSize: MainAxisSize.max,
         children: [
@@ -62,12 +63,12 @@ class _SearchResultPageWidgetState extends State<SearchResultPageWidget> {
                           children: [
                             InkWell(
                               onTap: () async {
-                                setState(() => searchResults = null);
+                                setState(() => searchResults1 = null);
                                 await ClothesRecord.search(
                                   term: textController.text,
                                 )
-                                    .then((r) => searchResults = r)
-                                    .onError((_, __) => searchResults = [])
+                                    .then((r) => searchResults1 = r)
+                                    .onError((_, __) => searchResults1 = [])
                                     .whenComplete(() => setState(() {}));
                               },
                               child: Icon(
@@ -80,11 +81,20 @@ class _SearchResultPageWidgetState extends State<SearchResultPageWidget> {
                               child: Padding(
                                 padding: EdgeInsets.fromLTRB(5, 0, 0, 2),
                                 child: TextFormField(
+                                  onFieldSubmitted: (_) async {
+                                    setState(() => searchResults2 = null);
+                                    await ClothesRecord.search(
+                                      term: textController.text,
+                                    )
+                                        .then((r) => searchResults2 = r)
+                                        .onError((_, __) => searchResults2 = [])
+                                        .whenComplete(() => setState(() {}));
+                                  },
                                   controller: textController,
                                   obscureText: false,
                                   decoration: InputDecoration(
-                                    labelText: 'Search clothes here...',
-                                    labelStyle:
+                                    hintText: 'Search clothes here...',
+                                    hintStyle:
                                         FlutterFlowTheme.bodyText1.override(
                                       fontFamily: 'Source Sans Pro',
                                       color: Color(0xFF95A1AC),
@@ -131,7 +141,7 @@ class _SearchResultPageWidgetState extends State<SearchResultPageWidget> {
           Expanded(
             child: Builder(
               builder: (context) {
-                if (searchResults == null) {
+                if (searchResults1 == null) {
                   return Center(
                     child: SizedBox(
                       width: 50,
@@ -142,7 +152,7 @@ class _SearchResultPageWidgetState extends State<SearchResultPageWidget> {
                     ),
                   );
                 }
-                final clothes = searchResults?.toList() ?? [];
+                final clothes = searchResults1?.toList() ?? [];
                 return ListView.builder(
                   padding: EdgeInsets.zero,
                   scrollDirection: Axis.vertical,
