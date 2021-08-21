@@ -1,11 +1,14 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../backend/firebase_storage/storage.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../flutter_flow/upload_media.dart';
 import '../main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -17,19 +20,18 @@ class UploadWidget extends StatefulWidget {
 }
 
 class _UploadWidgetState extends State<UploadWidget> {
-  TextEditingController textController1;
+  String uploadedFileUrl = '';
+  TextEditingController nameController;
   TextEditingController textController2;
   TextEditingController textController3;
-  TextEditingController textController4;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    textController1 = TextEditingController();
+    nameController = TextEditingController();
     textController2 = TextEditingController();
     textController3 = TextEditingController();
-    textController4 = TextEditingController();
   }
 
   @override
@@ -95,18 +97,6 @@ class _UploadWidgetState extends State<UploadWidget> {
                                               ),
                                             )
                                           ],
-                                        ),
-                                        Expanded(
-                                          child: Text(
-                                            'DKK50.00',
-                                            textAlign: TextAlign.end,
-                                            style: FlutterFlowTheme.subtitle2
-                                                .override(
-                                              fontFamily: 'Poppins',
-                                              color:
-                                                  FlutterFlowTheme.primaryColor,
-                                            ),
-                                          ),
                                         )
                                       ],
                                     ),
@@ -193,34 +183,34 @@ class _UploadWidgetState extends State<UploadWidget> {
                     child: Padding(
                       padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
                       child: TextFormField(
-                        controller: textController1,
+                        controller: nameController,
                         obscureText: false,
                         decoration: InputDecoration(
-                          hintText: '[Name...]',
-                          hintStyle: FlutterFlowTheme.bodyText1.override(
+                          labelText: 'Name...',
+                          labelStyle: FlutterFlowTheme.bodyText1.override(
                             fontFamily: 'Source Sans Pro',
-                            color: Colors.white,
+                            color: Colors.black,
                           ),
-                          enabledBorder: UnderlineInputBorder(
+                          enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: Color(0x00000000),
+                              color: Color(0xFFDBE2E7),
                               width: 1,
                             ),
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          focusedBorder: UnderlineInputBorder(
+                          focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: Color(0x00000000),
+                              color: Color(0xFFDBE2E7),
                               width: 1,
                             ),
                             borderRadius: BorderRadius.circular(10),
                           ),
                           filled: true,
-                          fillColor: Color(0xFFEED3AE),
+                          fillColor: Colors.white,
                         ),
                         style: FlutterFlowTheme.bodyText1.override(
                           fontFamily: 'Source Sans Pro',
-                          color: Colors.white,
+                          color: Colors.black,
                         ),
                       ),
                     ),
@@ -240,31 +230,31 @@ class _UploadWidgetState extends State<UploadWidget> {
                         controller: textController2,
                         obscureText: false,
                         decoration: InputDecoration(
-                          hintText: '[Color...]',
-                          hintStyle: FlutterFlowTheme.bodyText1.override(
+                          labelText: 'Color...',
+                          labelStyle: FlutterFlowTheme.bodyText1.override(
                             fontFamily: 'Source Sans Pro',
-                            color: Colors.white,
+                            color: Colors.black,
                           ),
-                          enabledBorder: UnderlineInputBorder(
+                          enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: Color(0x00000000),
+                              color: Color(0xFFDBE2E7),
                               width: 1,
                             ),
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          focusedBorder: UnderlineInputBorder(
+                          focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: Color(0x00000000),
+                              color: Color(0xFFDBE2E7),
                               width: 1,
                             ),
                             borderRadius: BorderRadius.circular(10),
                           ),
                           filled: true,
-                          fillColor: Color(0xFFEED3AE),
+                          fillColor: Colors.white,
                         ),
                         style: FlutterFlowTheme.bodyText1.override(
                           fontFamily: 'Source Sans Pro',
-                          color: Colors.white,
+                          color: Colors.black,
                         ),
                       ),
                     ),
@@ -284,31 +274,31 @@ class _UploadWidgetState extends State<UploadWidget> {
                         controller: textController3,
                         obscureText: false,
                         decoration: InputDecoration(
-                          hintText: '[Type...]',
-                          hintStyle: FlutterFlowTheme.bodyText1.override(
+                          labelText: 'Price..',
+                          labelStyle: FlutterFlowTheme.bodyText1.override(
                             fontFamily: 'Source Sans Pro',
-                            color: Colors.white,
+                            color: Colors.black,
                           ),
-                          enabledBorder: UnderlineInputBorder(
+                          enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: Color(0x00000000),
+                              color: Color(0xFFDBE2E7),
                               width: 1,
                             ),
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          focusedBorder: UnderlineInputBorder(
+                          focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: Color(0x00000000),
+                              color: Color(0xFFDBE2E7),
                               width: 1,
                             ),
                             borderRadius: BorderRadius.circular(10),
                           ),
                           filled: true,
-                          fillColor: Color(0xFFEED3AE),
+                          fillColor: Colors.white,
                         ),
                         style: FlutterFlowTheme.bodyText1.override(
                           fontFamily: 'Source Sans Pro',
-                          color: Colors.white,
+                          color: Colors.black,
                         ),
                       ),
                     ),
@@ -321,40 +311,43 @@ class _UploadWidgetState extends State<UploadWidget> {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Expanded(
-                    child: Padding(
-                      padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                      child: TextFormField(
-                        controller: textController4,
-                        obscureText: false,
-                        decoration: InputDecoration(
-                          hintText: '[Picture URL...]',
-                          hintStyle: FlutterFlowTheme.bodyText1.override(
-                            fontFamily: 'Source Sans Pro',
-                            color: Colors.white,
-                          ),
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0x00000000),
-                              width: 1,
-                            ),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0x00000000),
-                              width: 1,
-                            ),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          filled: true,
-                          fillColor: Color(0xFFEED3AE),
-                        ),
-                        style: FlutterFlowTheme.bodyText1.override(
-                          fontFamily: 'Source Sans Pro',
-                          color: Colors.white,
-                        ),
+                  FFButtonWidget(
+                    onPressed: () async {
+                      final selectedMedia = await selectMedia();
+                      if (selectedMedia != null &&
+                          validateFileFormat(
+                              selectedMedia.storagePath, context)) {
+                        showUploadMessage(context, 'Uploading file...',
+                            showLoading: true);
+                        final downloadUrl = await uploadData(
+                            selectedMedia.storagePath, selectedMedia.bytes);
+                        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                        if (downloadUrl != null) {
+                          setState(() => uploadedFileUrl = downloadUrl);
+                          showUploadMessage(context, 'Success!');
+                        } else {
+                          showUploadMessage(context, 'Failed to upload media');
+                          return;
+                        }
+                      }
+                    },
+                    text: 'Upload Photo',
+                    options: FFButtonOptions(
+                      width: 130,
+                      height: 40,
+                      color: Colors.white,
+                      textStyle: FlutterFlowTheme.bodyText1.override(
+                        fontFamily: 'Lexend Deca',
+                        color: Color(0xFF14181B),
+                        fontSize: 14,
+                        fontWeight: FontWeight.normal,
                       ),
+                      elevation: 2,
+                      borderSide: BorderSide(
+                        color: Color(0xFFDBE2E7),
+                        width: 1,
+                      ),
+                      borderRadius: 8,
                     ),
                   )
                 ],
@@ -370,10 +363,10 @@ class _UploadWidgetState extends State<UploadWidget> {
                   FFButtonWidget(
                     onPressed: () async {
                       final clothesCreateData = createClothesRecordData(
-                        color: textController2.text,
-                        type: textController3.text,
-                        name: textController1.text,
-                        picture: textController4.text,
+                        color: '',
+                        name: '',
+                        picture: uploadedFileUrl,
+                        price: '',
                       );
                       await ClothesRecord.collection
                           .doc()
@@ -387,12 +380,28 @@ class _UploadWidgetState extends State<UploadWidget> {
                           child: NavBarPage(initialPage: 'SearchResultPage'),
                         ),
                       );
+                      await showDialog(
+                        context: context,
+                        builder: (alertDialogContext) {
+                          return AlertDialog(
+                            title: Text('Product uploaded'),
+                            content: Text('Seriously'),
+                            actions: [
+                              TextButton(
+                                onPressed: () =>
+                                    Navigator.pop(alertDialogContext),
+                                child: Text('Ok'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
                     },
                     text: 'Upload product',
                     options: FFButtonOptions(
                       width: 300,
                       height: 54,
-                      color: FlutterFlowTheme.primaryColor,
+                      color: Color(0xFF298758),
                       textStyle: FlutterFlowTheme.subtitle2.override(
                         fontFamily: 'Poppins',
                         color: Colors.white,

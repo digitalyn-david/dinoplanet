@@ -5,6 +5,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../main.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
@@ -146,6 +147,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                 color: Color(0xFF455A64),
                                                 fontWeight: FontWeight.normal,
                                               ),
+                                              keyboardType:
+                                                  TextInputType.emailAddress,
                                             ),
                                           ),
                                         ),
@@ -263,8 +266,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                             color: Color(0xFF95D3D6),
                                             textStyle: GoogleFonts.getFont(
                                               'Open Sans',
-                                              color: FlutterFlowTheme
-                                                  .tertiaryColor,
+                                              color: Colors.white,
                                               fontWeight: FontWeight.w600,
                                               fontSize: 16,
                                             ),

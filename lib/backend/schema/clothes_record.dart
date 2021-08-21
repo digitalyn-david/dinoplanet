@@ -14,13 +14,13 @@ abstract class ClothesRecord
   String get color;
 
   @nullable
-  String get type;
-
-  @nullable
   String get name;
 
   @nullable
   String get picture;
+
+  @nullable
+  String get price;
 
   @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
@@ -28,9 +28,9 @@ abstract class ClothesRecord
 
   static void _initializeBuilder(ClothesRecordBuilder builder) => builder
     ..color = ''
-    ..type = ''
     ..name = ''
-    ..picture = '';
+    ..picture = ''
+    ..price = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('clothes');
@@ -43,9 +43,9 @@ abstract class ClothesRecord
       ClothesRecord(
         (c) => c
           ..color = snapshot.data['color']
-          ..type = snapshot.data['type']
           ..name = snapshot.data['name']
           ..picture = snapshot.data['picture']
+          ..price = snapshot.data['price']
           ..reference = ClothesRecord.collection.doc(snapshot.objectID),
       );
 
@@ -76,14 +76,14 @@ abstract class ClothesRecord
 
 Map<String, dynamic> createClothesRecordData({
   String color,
-  String type,
   String name,
   String picture,
+  String price,
 }) =>
     serializers.toFirestore(
         ClothesRecord.serializer,
         ClothesRecord((c) => c
           ..color = color
-          ..type = type
           ..name = name
-          ..picture = picture));
+          ..picture = picture
+          ..price = price));

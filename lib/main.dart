@@ -1,12 +1,14 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'auth/firebase_user_provider.dart';
+import '../flutter_flow/flutter_flow_theme.dart';
 import 'package:david/login_page/login_page_widget.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'home_page/home_page_widget.dart';
 import 'search_result_page/search_result_page_widget.dart';
-import 'upload/upload_widget.dart';
 import 'cart_page/cart_page_widget.dart';
+import 'profile_page/profile_page_widget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -39,10 +41,11 @@ class _MyAppState extends State<MyApp> {
       home: initialUser == null
           ? const Center(
               child: SizedBox(
-                width: 50,
-                height: 50,
-                child: CircularProgressIndicator(
-                  color: FlutterFlowTheme.primaryColor,
+                width: 40,
+                height: 40,
+                child: SpinKitFoldingCube(
+                  color: Color(0xFFEED3AE),
+                  size: 40,
                 ),
               ),
             )
@@ -77,8 +80,8 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'HomePage': HomePageWidget(),
       'SearchResultPage': SearchResultPageWidget(),
-      'Upload': UploadWidget(),
       'CartPage': CartPageWidget(),
+      'ProfilePage': ProfilePageWidget(),
     };
     return Scaffold(
       body: tabs[_currentPage],
@@ -100,23 +103,24 @@ class _NavBarPageState extends State<NavBarPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.upload_file,
-              size: 26,
-            ),
-            label: 'Upload',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
               Icons.shopping_cart,
               color: Color(0xFF9E9E9E),
               size: 26,
             ),
             label: 'Cart',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.person,
+              color: Color(0xFF9E9E9E),
+              size: 26,
+            ),
+            label: 'Home',
           )
         ],
-        backgroundColor: Color(0xFFEED3AE),
+        backgroundColor: Color(0xFF298758),
         currentIndex: tabs.keys.toList().indexOf(_currentPage),
-        selectedItemColor: Colors.black,
+        selectedItemColor: Color(0xFF212121),
         unselectedItemColor: Colors.white,
         onTap: (i) => setState(() => _currentPage = tabs.keys.toList()[i]),
         showSelectedLabels: true,

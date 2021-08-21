@@ -1,15 +1,27 @@
+import '../cart_page/cart_page_widget.dart';
 import '../flutter_flow/flutter_flow_drop_down_template.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../main.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 
 class ProductPageWidget extends StatefulWidget {
-  ProductPageWidget({Key key}) : super(key: key);
+  ProductPageWidget({
+    Key key,
+    this.name,
+    this.price,
+    this.url,
+  }) : super(key: key);
+
+  final String name;
+  final String price;
+  final String url;
 
   @override
   _ProductPageWidgetState createState() => _ProductPageWidgetState();
@@ -49,8 +61,16 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
           Padding(
             padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
             child: IconButton(
-              onPressed: () {
-                print('IconButton pressed ...');
+              onPressed: () async {
+                await Navigator.push(
+                  context,
+                  PageTransition(
+                    type: PageTransitionType.leftToRight,
+                    duration: Duration(milliseconds: 300),
+                    reverseDuration: Duration(milliseconds: 300),
+                    child: NavBarPage(initialPage: 'CartPage'),
+                  ),
+                );
               },
               icon: Icon(
                 Icons.shopping_cart_outlined,
@@ -77,8 +97,8 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                   Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      Image.asset(
-                        'assets/images/petit-vour-josh-rosebrook-nourish-shampoo-8oz_1296x.jpg',
+                      Image.network(
+                        widget.url,
                         width: MediaQuery.of(context).size.width,
                         height: 350,
                         fit: BoxFit.fitHeight,
@@ -86,14 +106,14 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                     ],
                   ),
                   Padding(
-                    padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
+                    padding: EdgeInsets.fromLTRB(20, 10, 20, 0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Text(
-                          'Nourish Shampoo',
+                          widget.name,
                           style: FlutterFlowTheme.title1.override(
-                            fontFamily: 'Playfair Display',
+                            fontFamily: 'Roboto',
                             color: Color(0xFF090F13),
                             fontSize: 24,
                             fontWeight: FontWeight.w500,
@@ -101,11 +121,11 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                         ),
                         Expanded(
                           child: Text(
-                            '\$50.00',
+                            widget.price,
                             textAlign: TextAlign.end,
                             style: FlutterFlowTheme.subtitle1.override(
                               fontFamily: 'Lexend Deca',
-                              color: Color(0xFF4B39EF),
+                              color: Color(0xFF298758),
                               fontSize: 18,
                               fontWeight: FontWeight.w500,
                             ),
@@ -176,7 +196,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                    padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -255,7 +275,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.fromLTRB(0, 24, 0, 20),
+              padding: EdgeInsets.fromLTRB(0, 10, 0, 20),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -271,18 +291,30 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                       width: MediaQuery.of(context).size.width * 0.9,
                       height: 70,
                       decoration: BoxDecoration(
-                        color: Color(0xFF4B39EF),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Padding(
                         padding: EdgeInsets.fromLTRB(0, 1, 0, 0),
                         child: FFButtonWidget(
-                          onPressed: () {
-                            print('Button pressed ...');
+                          onPressed: () async {
+                            await Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.leftToRight,
+                                duration: Duration(milliseconds: 300),
+                                reverseDuration: Duration(milliseconds: 300),
+                                child: CartPageWidget(
+                                  name: '',
+                                  color: '',
+                                  price: '',
+                                  picture: '',
+                                ),
+                              ),
+                            );
                           },
-                          text: 'Add to Cart (\$50.00)',
+                          text: 'Add to Cart',
                           options: FFButtonOptions(
-                            color: Color(0xFF4B39EF),
+                            color: Color(0xFF298758),
                             textStyle: FlutterFlowTheme.subtitle2.override(
                               fontFamily: 'Lexend Deca',
                               color: Colors.white,

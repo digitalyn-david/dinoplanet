@@ -2,12 +2,24 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 
 class CartPageWidget extends StatefulWidget {
-  CartPageWidget({Key key}) : super(key: key);
+  CartPageWidget({
+    Key key,
+    this.name,
+    this.color,
+    this.price,
+    this.picture,
+  }) : super(key: key);
+
+  final String name;
+  final String color;
+  final String price;
+  final String picture;
 
   @override
   _CartPageWidgetState createState() => _CartPageWidgetState();
@@ -81,15 +93,23 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                         fontWeight: FontWeight.normal,
                       ),
                     ),
-                    Text(
-                      '\$25.00',
-                      textAlign: TextAlign.end,
-                      style: FlutterFlowTheme.subtitle2.override(
-                        fontFamily: 'Lexend Deca',
-                        color: Color(0xFF151B1E),
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          widget.price,
+                          style: FlutterFlowTheme.subtitle2.override(
+                            fontFamily: 'Poppins',
+                          ),
+                        ),
+                        Text(
+                          'DKK',
+                          style: FlutterFlowTheme.subtitle2.override(
+                            fontFamily: 'Poppins',
+                          ),
+                        )
+                      ],
                     )
                   ],
                 ),
@@ -158,7 +178,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          '[Product Name]',
+                                          widget.name,
                                           style: FlutterFlowTheme.subtitle1
                                               .override(
                                             fontFamily: 'Lexend Deca',
@@ -167,19 +187,33 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                             fontWeight: FontWeight.w500,
                                           ),
                                         ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsets.fromLTRB(0, 4, 0, 4),
-                                          child: Text(
-                                            'Color: Green',
-                                            style: FlutterFlowTheme.bodyText1
-                                                .override(
-                                              fontFamily: 'Lexend Deca',
-                                              color: Color(0xFF090F13),
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.normal,
+                                        Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsets.fromLTRB(
+                                                  0, 4, 0, 4),
+                                              child: Text(
+                                                'Color: ',
+                                                style: FlutterFlowTheme
+                                                    .bodyText1
+                                                    .override(
+                                                  fontFamily: 'Lexend Deca',
+                                                  color: Color(0xFF090F13),
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.normal,
+                                                ),
+                                              ),
                                             ),
-                                          ),
+                                            Text(
+                                              widget.color,
+                                              style: FlutterFlowTheme.bodyText1
+                                                  .override(
+                                                fontFamily: 'Lexend Deca',
+                                                color: Color(0xFF090F13),
+                                              ),
+                                            )
+                                          ],
                                         ),
                                         Padding(
                                           padding:
@@ -263,19 +297,42 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                                     crossAxisAlignment:
                                                         CrossAxisAlignment.end,
                                                     children: [
-                                                      Text(
-                                                        '[Price]',
-                                                        style: FlutterFlowTheme
-                                                            .subtitle1
-                                                            .override(
-                                                          fontFamily:
-                                                              'Lexend Deca',
-                                                          color:
-                                                              Color(0xFF151B1E),
-                                                          fontSize: 18,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                        ),
+                                                      Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .end,
+                                                        children: [
+                                                          Text(
+                                                            widget.price,
+                                                            style:
+                                                                FlutterFlowTheme
+                                                                    .subtitle1
+                                                                    .override(
+                                                              fontFamily:
+                                                                  'Lexend Deca',
+                                                              color: Color(
+                                                                  0xFF151B1E),
+                                                              fontSize: 18,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                            ),
+                                                          ),
+                                                          Text(
+                                                            'DKK',
+                                                            style:
+                                                                FlutterFlowTheme
+                                                                    .subtitle1
+                                                                    .override(
+                                                              fontFamily:
+                                                                  'Lexend Deca',
+                                                              color: Color(
+                                                                  0xFF090F13),
+                                                            ),
+                                                          )
+                                                        ],
                                                       )
                                                     ],
                                                   ),
@@ -346,15 +403,29 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                       fontWeight: FontWeight.normal,
                                     ),
                                   ),
-                                  Text(
-                                    '[Price]',
-                                    textAlign: TextAlign.end,
-                                    style: FlutterFlowTheme.subtitle2.override(
-                                      fontFamily: 'Lexend Deca',
-                                      color: Color(0xFF111417),
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Text(
+                                        widget.price,
+                                        style:
+                                            FlutterFlowTheme.subtitle1.override(
+                                          fontFamily: 'Lexend Deca',
+                                          color: Color(0xFF151B1E),
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                      Text(
+                                        'DKK',
+                                        style:
+                                            FlutterFlowTheme.subtitle1.override(
+                                          fontFamily: 'Lexend Deca',
+                                          color: Color(0xFF090F13),
+                                        ),
+                                      )
+                                    ],
                                   )
                                 ],
                               ),
@@ -376,7 +447,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                     ),
                                   ),
                                   Text(
-                                    '[Price]',
+                                    '10 DKK',
                                     textAlign: TextAlign.end,
                                     style: FlutterFlowTheme.subtitle2.override(
                                       fontFamily: 'Lexend Deca',
@@ -405,7 +476,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                     ),
                                   ),
                                   Text(
-                                    '[Price]',
+                                    'FREE',
                                     textAlign: TextAlign.end,
                                     style: FlutterFlowTheme.subtitle2.override(
                                       fontFamily: 'Lexend Deca',
@@ -433,15 +504,29 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                       fontWeight: FontWeight.normal,
                                     ),
                                   ),
-                                  Text(
-                                    '[Order Total]',
-                                    textAlign: TextAlign.end,
-                                    style: FlutterFlowTheme.subtitle1.override(
-                                      fontFamily: 'Lexend Deca',
-                                      color: Color(0xFF151B1E),
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w500,
-                                    ),
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Text(
+                                        widget.price,
+                                        style:
+                                            FlutterFlowTheme.subtitle1.override(
+                                          fontFamily: 'Lexend Deca',
+                                          color: Color(0xFF151B1E),
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                      Text(
+                                        'DKK',
+                                        style:
+                                            FlutterFlowTheme.subtitle1.override(
+                                          fontFamily: 'Lexend Deca',
+                                          color: Color(0xFF090F13),
+                                        ),
+                                      )
+                                    ],
                                   )
                                 ],
                               ),
@@ -490,9 +575,9 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                       },
                       text: 'Proceed to Checkout',
                       options: FFButtonOptions(
-                        width: 320,
+                        width: 345,
                         height: 60,
-                        color: Color(0xFF03CE9F),
+                        color: Color(0xFF298758),
                         textStyle: FlutterFlowTheme.subtitle2.override(
                           fontFamily: 'Lexend Deca',
                           color: Colors.white,
