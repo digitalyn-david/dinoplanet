@@ -89,7 +89,7 @@ class _NavBarPageState extends State<NavBarPage> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.home,
+              Icons.home_sharp,
               size: 26,
             ),
             label: 'Home',
@@ -118,10 +118,10 @@ class _NavBarPageState extends State<NavBarPage> {
             label: 'Home',
           )
         ],
-        backgroundColor: Color(0xFF298758),
+        backgroundColor: Colors.white,
         currentIndex: tabs.keys.toList().indexOf(_currentPage),
-        selectedItemColor: Color(0xFF212121),
-        unselectedItemColor: Colors.white,
+        selectedItemColor: Colors.black,
+        unselectedItemColor: FlutterFlowTheme.tertiaryColor,
         onTap: (i) => setState(() => _currentPage = tabs.keys.toList()[i]),
         showSelectedLabels: true,
         showUnselectedLabels: true,

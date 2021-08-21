@@ -106,10 +106,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             setState(
                                                 () => searchResults1 = null);
                                             await ClothesRecord.search(
-                                              term: valueOrDefault<String>(
-                                                textController.text,
-                                                'Example',
-                                              ),
+                                              term: textController.text,
                                             )
                                                 .then((r) => searchResults1 = r)
                                                 .onError((_, __) =>
@@ -147,10 +144,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 setState(() =>
                                                     searchResults2 = null);
                                                 await ClothesRecord.search(
-                                                  term: valueOrDefault<String>(
-                                                    textController.text,
-                                                    'Example pressed by enter',
-                                                  ),
+                                                  term: textController.text,
                                                 )
                                                     .then((r) =>
                                                         searchResults2 = r)
