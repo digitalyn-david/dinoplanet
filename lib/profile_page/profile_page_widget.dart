@@ -100,36 +100,40 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                         ),
                         alignment:
                             Alignment(0.3999999999999999, 0.19999999999999996),
-                        child: Align(
-                          alignment: Alignment(-0.05, -1),
-                          child: FFButtonWidget(
-                            onPressed: () async {
-                              await Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.bottomToTop,
-                                  duration: Duration(milliseconds: 300),
-                                  reverseDuration: Duration(milliseconds: 300),
-                                  child: UploadWidget(),
+                        child: Visibility(
+                          visible: profilePageUsersRecord.admin ?? true,
+                          child: Align(
+                            alignment: Alignment(-0.05, -1),
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                await Navigator.push(
+                                  context,
+                                  PageTransition(
+                                    type: PageTransitionType.bottomToTop,
+                                    duration: Duration(milliseconds: 300),
+                                    reverseDuration:
+                                        Duration(milliseconds: 300),
+                                    child: UploadWidget(),
+                                  ),
+                                );
+                              },
+                              text: 'Admin',
+                              options: FFButtonOptions(
+                                width: 80,
+                                height: 35,
+                                color: Colors.white,
+                                textStyle: FlutterFlowTheme.subtitle2.override(
+                                  fontFamily: 'Poppins',
+                                  color: Color(0xFF14181B),
+                                  fontSize: 14,
                                 ),
-                              );
-                            },
-                            text: 'Admin',
-                            options: FFButtonOptions(
-                              width: 80,
-                              height: 35,
-                              color: Colors.white,
-                              textStyle: FlutterFlowTheme.subtitle2.override(
-                                fontFamily: 'Poppins',
-                                color: Color(0xFF14181B),
-                                fontSize: 14,
+                                elevation: 2,
+                                borderSide: BorderSide(
+                                  color: Color(0xFFDBE2E7),
+                                  width: 1,
+                                ),
+                                borderRadius: 8,
                               ),
-                              elevation: 2,
-                              borderSide: BorderSide(
-                                color: Color(0xFFDBE2E7),
-                                width: 1,
-                              ),
-                              borderRadius: 8,
                             ),
                           ),
                         ),

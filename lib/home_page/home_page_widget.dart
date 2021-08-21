@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomePageWidget extends StatefulWidget {
   HomePageWidget({Key key}) : super(key: key);
@@ -18,6 +19,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
   List<ClothesRecord> searchResults1 = [];
   List<ClothesRecord> searchResults2 = [];
   TextEditingController textController;
+  final pageViewController = PageController();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -36,51 +38,51 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Padding(
-                padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                child: Container(
-                  height: 250,
-                  child: Stack(
-                    children: [
-                      Align(
-                        alignment: Alignment(0, 0),
-                        child: Padding(
-                          padding: EdgeInsets.fromLTRB(100, 0, 0, 0),
-                          child: Image.asset(
-                            'assets/images/6ae5df97-2f01-4069-a980-0ec17af58c85.png',
-                            width: double.infinity,
-                            height: 450,
-                            fit: BoxFit.contain,
-                          ),
+              Container(
+                height: 250,
+                child: Stack(
+                  children: [
+                    Align(
+                      alignment: Alignment(0, 0),
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(150, 100, 0, 0),
+                        child: Image.asset(
+                          'assets/images/6ae5df97-2f01-4069-a980-0ec17af58c85.png',
+                          width: double.infinity,
+                          height: 450,
+                          fit: BoxFit.contain,
                         ),
                       ),
-                      Align(
-                        alignment: Alignment(0, 0),
-                        child: Padding(
-                          padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Align(
-                                alignment: Alignment(0, 0),
-                                child: Text(
-                                  'Dino                      Planet                       ',
-                                  style: FlutterFlowTheme.bodyText1.override(
-                                    fontFamily: 'Source Sans Pro',
-                                    color: FlutterFlowTheme.secondaryColor,
-                                    fontSize: 40,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(0, 27, 0, 0),
+                    ),
+                    Align(
+                      alignment: Alignment(1.01, 0),
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(0, 27, 0, 0),
+                              child: InkWell(
+                                onTap: () async {
+                                  await Navigator.push(
+                                    context,
+                                    PageTransition(
+                                      type: PageTransitionType.topToBottom,
+                                      duration: Duration(milliseconds: 300),
+                                      reverseDuration:
+                                          Duration(milliseconds: 300),
+                                      child: NavBarPage(
+                                          initialPage: 'SearchResultPage'),
+                                    ),
+                                  );
+                                },
                                 child: Container(
                                   width: double.infinity,
                                   height: 52,
                                   decoration: BoxDecoration(
                                     color: Colors.white,
-                                    borderRadius: BorderRadius.circular(8),
+                                    borderRadius: BorderRadius.circular(40),
                                   ),
                                   child: Padding(
                                     padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
@@ -205,220 +207,572 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   ),
                                 ),
                               ),
-                              Align(
-                                alignment: Alignment(-1, 0),
-                                child: Padding(
-                                  padding: EdgeInsets.fromLTRB(10, 15, 0, 20),
-                                  child: Text(
-                                    'Products',
-                                    style: FlutterFlowTheme.bodyText1.override(
-                                      fontFamily: 'Source Sans Pro',
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
+                            )
+                          ],
                         ),
-                      )
-                    ],
-                  ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(10, 100, 0, 0),
+                      child: Container(
+                        width: 200,
+                        height: 100,
+                        decoration: BoxDecoration(
+                          color: Color(0x00FFFFFF),
+                        ),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'DinoPlanet',
+                              style: FlutterFlowTheme.title1.override(
+                                fontFamily: 'Montserrat',
+                                color: Colors.white,
+                                fontSize: 35,
+                              ),
+                            ),
+                            Expanded(
+                              child: Text(
+                                'The DinoPlanet webshop for a sustainable clothing industry.',
+                                style: FlutterFlowTheme.bodyText2.override(
+                                  fontFamily: 'Lexend Deca',
+                                  color: Color(0xFF8B97A2),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.normal,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    )
+                  ],
                 ),
               ),
               Align(
                 alignment: Alignment(0, 0),
                 child: Stack(
                   children: [
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.89,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          boxShadow: [
-                            BoxShadow(
-                              blurRadius: 4,
-                              color: Color(0x2E000000),
-                              offset: Offset(0, 2),
-                            )
-                          ],
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: SingleChildScrollView(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(0),
-                                  bottomRight: Radius.circular(0),
-                                  topLeft: Radius.circular(8),
-                                  topRight: Radius.circular(8),
-                                ),
-                                child: Image.asset(
-                                  'assets/images/Hat_bicolor.png',
-                                  height: 200,
-                                  fit: BoxFit.fitWidth,
-                                ),
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
+                          child: Material(
+                            color: Colors.transparent,
+                            elevation: 2,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Container(
+                              width: MediaQuery.of(context).size.width * 0.45,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 4,
+                                    color: Color(0x2E000000),
+                                    offset: Offset(0, 2),
+                                  )
+                                ],
+                                borderRadius: BorderRadius.circular(12),
                               ),
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(12, 8, 12, 0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Container(
-                                      width: 50,
-                                      height: 50,
-                                      clipBehavior: Clip.antiAlias,
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                      ),
-                                      child: Image.asset(
-                                        'assets/images/user_2@2x.png',
-                                      ),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(12),
+                                    child: Image.asset(
+                                      'assets/images/Hat_bicolor.png',
+                                      height: 200,
+                                      fit: BoxFit.fitWidth,
                                     ),
-                                    Padding(
-                                      padding: EdgeInsets.fromLTRB(12, 0, 0, 0),
-                                      child: Text(
-                                        'Sunshine',
-                                        style: FlutterFlowTheme.title2.override(
-                                          fontFamily: 'Open Sans',
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.fromLTRB(4, 0, 0, 0),
-                                      child: Text(
-                                        '2h',
-                                        style:
-                                            FlutterFlowTheme.bodyText2.override(
-                                          fontFamily: 'Lexend Deca',
-                                          color: Color(0xFF8B97A2),
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(12, 4, 12, 0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Expanded(
-                                      child: Padding(
-                                        padding:
-                                            EdgeInsets.fromLTRB(0, 0, 0, 8),
-                                        child: Text(
-                                          'We made an example webshop. There are some products and functioning shopping functions. We also present you a working searching field.',
-                                          style: FlutterFlowTheme.bodyText2
-                                              .override(
-                                            fontFamily: 'Lexend Deca',
-                                            color: Color(0xFF8B97A2),
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.normal,
-                                          ),
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Divider(
-                                height: 3,
-                                thickness: 1,
-                                color: Color(0xFFE1E4E5),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(16, 0, 16, 4),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.fromLTRB(12, 8, 12, 0),
+                                    child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsets.fromLTRB(0, 0, 16, 0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Icon(
-                                                Icons.favorite_border,
-                                                color: FlutterFlowTheme
-                                                    .tertiaryColor,
-                                                size: 24,
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsets.fromLTRB(
-                                                    4, 0, 0, 0),
-                                                child: Text(
-                                                  '2,493',
-                                                  style: FlutterFlowTheme
-                                                      .bodyText2
-                                                      .override(
-                                                    fontFamily: 'Lexend Deca',
-                                                    color: Color(0xFF8B97A2),
-                                                    fontSize: 14,
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                  ),
-                                                ),
-                                              )
-                                            ],
+                                        Container(
+                                          width: 30,
+                                          height: 30,
+                                          clipBehavior: Clip.antiAlias,
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                          ),
+                                          child: Image.asset(
+                                            'assets/images/user_2@2x.png',
                                           ),
                                         ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsets.fromLTRB(5, 0, 0, 0),
+                                          child: Text(
+                                            'Sunshine',
+                                            style: FlutterFlowTheme.title2
+                                                .override(
+                                              fontFamily: 'Source Sans Pro',
+                                              fontSize: 18,
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsets.fromLTRB(4, 0, 0, 0),
+                                          child: Text(
+                                            '2h',
+                                            textAlign: TextAlign.justify,
+                                            style: FlutterFlowTheme.bodyText2
+                                                .override(
+                                              fontFamily: 'Lexend Deca',
+                                              color: Color(0xFF8B97A2),
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.normal,
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.fromLTRB(12, 4, 12, 0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Expanded(
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsets.fromLTRB(0, 0, 0, 8),
+                                            child: Text(
+                                              'The newest collection.',
+                                              style: FlutterFlowTheme.bodyText2
+                                                  .override(
+                                                fontFamily: 'Lexend Deca',
+                                                color: Color(0xFF8B97A2),
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.normal,
+                                              ),
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.fromLTRB(16, 0, 16, 4),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
                                         Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
-                                            Icon(
-                                              Icons.mode_comment_outlined,
-                                              color: Color(0xFF95A1AC),
-                                              size: 24,
-                                            ),
                                             Padding(
                                               padding: EdgeInsets.fromLTRB(
-                                                  4, 0, 0, 0),
-                                              child: Text(
-                                                '4',
-                                                style: FlutterFlowTheme
-                                                    .bodyText2
-                                                    .override(
-                                                  fontFamily: 'Lexend Deca',
-                                                  color: Color(0xFF8B97A2),
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.normal,
-                                                ),
+                                                  0, 0, 16, 0),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Icon(
+                                                    Icons.favorite_border,
+                                                    color: FlutterFlowTheme
+                                                        .tertiaryColor,
+                                                    size: 20,
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsets.fromLTRB(
+                                                            4, 0, 0, 0),
+                                                    child: Text(
+                                                      '1,495',
+                                                      style: FlutterFlowTheme
+                                                          .bodyText2
+                                                          .override(
+                                                        fontFamily:
+                                                            'Lexend Deca',
+                                                        color:
+                                                            Color(0xFF8B97A2),
+                                                        fontSize: 12,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
+                                                    ),
+                                                  )
+                                                ],
                                               ),
+                                            ),
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Icon(
+                                                  Icons.mode_comment_outlined,
+                                                  color: Color(0xFF95A1AC),
+                                                  size: 20,
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.fromLTRB(
+                                                      4, 0, 0, 0),
+                                                  child: Text(
+                                                    '4',
+                                                    style: FlutterFlowTheme
+                                                        .bodyText2
+                                                        .override(
+                                                      fontFamily: 'Lexend Deca',
+                                                      color: Color(0xFF8B97A2),
+                                                      fontSize: 12,
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                    ),
+                                                  ),
+                                                )
+                                              ],
                                             )
                                           ],
                                         )
                                       ],
                                     ),
-                                    Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Icon(
-                                          Icons.shopping_cart_outlined,
-                                          color: Color(0xFF95A1AC),
-                                          size: 24,
-                                        )
-                                      ],
-                                    )
-                                  ],
-                                ),
-                              )
-                            ],
+                                  )
+                                ],
+                              ),
+                            ),
                           ),
                         ),
-                      ),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
+                          child: Material(
+                            color: Colors.transparent,
+                            elevation: 2,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Container(
+                              width: MediaQuery.of(context).size.width * 0.45,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 4,
+                                    color: Color(0x2E000000),
+                                    offset: Offset(0, 2),
+                                  )
+                                ],
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(12),
+                                    child: Image.asset(
+                                      'assets/images/coffi_coffee.png',
+                                      height: 200,
+                                      fit: BoxFit.fitWidth,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.fromLTRB(12, 8, 12, 0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Container(
+                                          width: 30,
+                                          height: 30,
+                                          clipBehavior: Clip.antiAlias,
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                          ),
+                                          child: Image.asset(
+                                            'assets/images/Photo on 27-04-2021 at 17.21.jpg',
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsets.fromLTRB(5, 0, 0, 0),
+                                          child: Text(
+                                            'Coffe',
+                                            style: FlutterFlowTheme.title2
+                                                .override(
+                                              fontFamily: 'Source Sans Pro',
+                                              fontSize: 18,
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsets.fromLTRB(4, 0, 0, 0),
+                                          child: Text(
+                                            '4d',
+                                            textAlign: TextAlign.justify,
+                                            style: FlutterFlowTheme.bodyText2
+                                                .override(
+                                              fontFamily: 'Lexend Deca',
+                                              color: Color(0xFF8B97A2),
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.normal,
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.fromLTRB(12, 4, 12, 0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Expanded(
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsets.fromLTRB(0, 0, 0, 8),
+                                            child: Text(
+                                              'We made an example webshop. ',
+                                              style: FlutterFlowTheme.bodyText2
+                                                  .override(
+                                                fontFamily: 'Lexend Deca',
+                                                color: Color(0xFF8B97A2),
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.normal,
+                                              ),
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.fromLTRB(16, 0, 16, 4),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsets.fromLTRB(
+                                                  0, 0, 16, 0),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Icon(
+                                                    Icons.favorite_border,
+                                                    color: FlutterFlowTheme
+                                                        .tertiaryColor,
+                                                    size: 20,
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsets.fromLTRB(
+                                                            4, 0, 0, 0),
+                                                    child: Text(
+                                                      '2,493',
+                                                      style: FlutterFlowTheme
+                                                          .bodyText2
+                                                          .override(
+                                                        fontFamily:
+                                                            'Lexend Deca',
+                                                        color:
+                                                            Color(0xFF8B97A2),
+                                                        fontSize: 12,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Icon(
+                                                  Icons.mode_comment_outlined,
+                                                  color: Color(0xFF95A1AC),
+                                                  size: 20,
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.fromLTRB(
+                                                      4, 0, 0, 0),
+                                                  child: Text(
+                                                    '16',
+                                                    style: FlutterFlowTheme
+                                                        .bodyText2
+                                                        .override(
+                                                      fontFamily: 'Lexend Deca',
+                                                      color: Color(0xFF8B97A2),
+                                                      fontSize: 12,
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                    ),
+                                                  ),
+                                                )
+                                              ],
+                                            )
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                child: Stack(
+                  children: [
+                    Column(
+                      mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Align(
+                              alignment: Alignment(-0.9, 0),
+                              child: Padding(
+                                padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                                child: Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.45,
+                                  height: 300,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  child: Container(
+                                    width: double.infinity,
+                                    height: double.infinity,
+                                    child: Stack(
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsets.fromLTRB(0, 0, 0, 50),
+                                          child: PageView(
+                                            controller: pageViewController,
+                                            scrollDirection: Axis.horizontal,
+                                            children: [
+                                              ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(12),
+                                                child: Image.asset(
+                                                  'assets/images/received_117806446794996.webp',
+                                                  width: 100,
+                                                  height: 100,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                              ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(12),
+                                                child: Image.asset(
+                                                  'assets/images/8df9e397-9caf-4b24-88ad-04d874951e58.png',
+                                                  width: double.infinity,
+                                                  height: double.infinity,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                              ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(12),
+                                                child: Image.asset(
+                                                  'assets/images/Localcities.png',
+                                                  width: 100,
+                                                  height: 100,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                        Align(
+                                          alignment: Alignment(0, 1),
+                                          child: Padding(
+                                            padding: EdgeInsets.fromLTRB(
+                                                0, 0, 0, 10),
+                                            child: SmoothPageIndicator(
+                                              controller: pageViewController,
+                                              count: 3,
+                                              axisDirection: Axis.horizontal,
+                                              onDotClicked: (i) {
+                                                pageViewController
+                                                    .animateToPage(
+                                                  i,
+                                                  duration: Duration(
+                                                      milliseconds: 500),
+                                                  curve: Curves.ease,
+                                                );
+                                              },
+                                              effect: ExpandingDotsEffect(
+                                                expansionFactor: 2,
+                                                spacing: 8,
+                                                radius: 16,
+                                                dotWidth: 16,
+                                                dotHeight: 16,
+                                                dotColor: Color(0xFF9E9E9E),
+                                                activeDotColor:
+                                                    Color(0xFF298758),
+                                                paintStyle: PaintingStyle.fill,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width * 0.45,
+                              height: 300,
+                              decoration: BoxDecoration(
+                                color: Color(0x00EEEEEE),
+                              ),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Recent drawings',
+                                    textAlign: TextAlign.start,
+                                    style: FlutterFlowTheme.bodyText1.override(
+                                      fontFamily: 'Montserrat',
+                                      color: Colors.white,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                                    child: Text(
+                                      'Check out the latest drawings that will be on t-shirts soon.',
+                                      style:
+                                          FlutterFlowTheme.bodyText1.override(
+                                        fontFamily: 'Lexend Deca',
+                                        color: Color(0xFF8B97A2),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            )
+                          ],
+                        )
+                      ],
                     )
                   ],
                 ),

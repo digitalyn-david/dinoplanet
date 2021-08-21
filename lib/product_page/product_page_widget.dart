@@ -17,11 +17,13 @@ class ProductPageWidget extends StatefulWidget {
     this.name,
     this.price,
     this.url,
+    this.color,
   }) : super(key: key);
 
   final String name;
   final String price;
   final String url;
+  final String color;
 
   @override
   _ProductPageWidgetState createState() => _ProductPageWidgetState();
@@ -304,10 +306,10 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                 duration: Duration(milliseconds: 300),
                                 reverseDuration: Duration(milliseconds: 300),
                                 child: CartPageWidget(
-                                  name: '',
-                                  color: '',
-                                  price: '',
-                                  picture: '',
+                                  name: widget.name,
+                                  color: widget.name,
+                                  price: widget.price,
+                                  picture: widget.url,
                                 ),
                               ),
                             );

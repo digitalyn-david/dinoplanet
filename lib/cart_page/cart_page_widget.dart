@@ -1,3 +1,4 @@
+import '../backend/commerce/payment_manager.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -26,6 +27,7 @@ class CartPageWidget extends StatefulWidget {
 }
 
 class _CartPageWidgetState extends State<CartPageWidget> {
+  String transactionId;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -104,7 +106,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                           ),
                         ),
                         Text(
-                          'DKK',
+                          ' DKK',
                           style: FlutterFlowTheme.subtitle2.override(
                             fontFamily: 'Poppins',
                           ),
@@ -157,8 +159,8 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                       padding: EdgeInsets.fromLTRB(8, 0, 0, 0),
                                       child: ClipRRect(
                                         borderRadius: BorderRadius.circular(8),
-                                        child: Image.asset(
-                                          'assets/images/photoBook.png',
+                                        child: Image.network(
+                                          widget.picture,
                                           width: 74,
                                           height: 74,
                                           fit: BoxFit.cover,
@@ -313,15 +315,15 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                                               fontFamily:
                                                                   'Lexend Deca',
                                                               color: Color(
-                                                                  0xFF151B1E),
-                                                              fontSize: 18,
+                                                                  0xFF090F13),
+                                                              fontSize: 16,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .w500,
                                                             ),
                                                           ),
                                                           Text(
-                                                            'DKK',
+                                                            ' DKK',
                                                             style:
                                                                 FlutterFlowTheme
                                                                     .subtitle1
@@ -412,13 +414,13 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                         style:
                                             FlutterFlowTheme.subtitle1.override(
                                           fontFamily: 'Lexend Deca',
-                                          color: Color(0xFF151B1E),
-                                          fontSize: 18,
+                                          color: Color(0xFF090F13),
+                                          fontSize: 16,
                                           fontWeight: FontWeight.w500,
                                         ),
                                       ),
                                       Text(
-                                        'DKK',
+                                        ' DKK',
                                         style:
                                             FlutterFlowTheme.subtitle1.override(
                                           fontFamily: 'Lexend Deca',
@@ -447,13 +449,13 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                     ),
                                   ),
                                   Text(
-                                    '10 DKK',
+                                    '22 DKK',
                                     textAlign: TextAlign.end,
                                     style: FlutterFlowTheme.subtitle2.override(
                                       fontFamily: 'Lexend Deca',
-                                      color: Color(0xFF111417),
+                                      color: Color(0xFF090F13),
                                       fontSize: 16,
-                                      fontWeight: FontWeight.bold,
+                                      fontWeight: FontWeight.w500,
                                     ),
                                   )
                                 ],
@@ -480,9 +482,9 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                     textAlign: TextAlign.end,
                                     style: FlutterFlowTheme.subtitle2.override(
                                       fontFamily: 'Lexend Deca',
-                                      color: Color(0xFF111417),
+                                      color: Color(0xFF090F13),
                                       fontSize: 16,
-                                      fontWeight: FontWeight.bold,
+                                      fontWeight: FontWeight.w500,
                                     ),
                                   )
                                 ],
@@ -513,13 +515,13 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                         style:
                                             FlutterFlowTheme.subtitle1.override(
                                           fontFamily: 'Lexend Deca',
-                                          color: Color(0xFF151B1E),
-                                          fontSize: 18,
+                                          color: Color(0xFF090F13),
+                                          fontSize: 16,
                                           fontWeight: FontWeight.w500,
                                         ),
                                       ),
                                       Text(
-                                        'DKK',
+                                        ' DKK',
                                         style:
                                             FlutterFlowTheme.subtitle1.override(
                                           fontFamily: 'Lexend Deca',
@@ -570,8 +572,50 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                       ],
                     ),
                     FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
+                      onPressed: () async {
+                        final transacAmount = 20.0;
+                        final transacDisplayName = 'DinoPlanet purchase';
+                        if (kIsWeb) {
+                          showSnackbar(
+                              context, 'Payments not yet supported on web.');
+                          return;
+                        }
+
+                        final dropInRequest = BraintreeDropInRequest(
+                          cardEnabled: true,
+                          clientToken: braintreeClientToken(),
+                          collectDeviceData: true,
+                          paypalRequest: BraintreePayPalRequest(
+                            amount: transacAmount.toString(),
+                            currencyCode: 'DKK',
+                            displayName: transacDisplayName,
+                          ),
+                        );
+                        final dropInResult =
+                            await BraintreeDropIn.start(dropInRequest);
+                        if (dropInResult?.paymentMethodNonce?.nonce == null) {
+                          return;
+                        }
+                        showSnackbar(
+                          context,
+                          'Processing payment...',
+                          duration: 10,
+                          loading: true,
+                        );
+                        final paymentResponse = await processBraintreePayment(
+                          transacAmount,
+                          dropInResult.paymentMethodNonce.nonce,
+                          dropInResult.deviceData,
+                        );
+                        if (paymentResponse.errorMessage != null) {
+                          showSnackbar(context,
+                              'Error: ${paymentResponse.errorMessage}');
+                          return;
+                        }
+                        showSnackbar(context, 'Success!');
+                        transactionId = paymentResponse.transactionId;
+
+                        setState(() {});
                       },
                       text: 'Proceed to Checkout',
                       options: FFButtonOptions(

@@ -2,6 +2,7 @@ import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../product_page/product_page_widget.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -54,7 +55,7 @@ class _SearchResultPageWidgetState extends State<SearchResultPageWidget> {
                         height: 52,
                         decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.circular(15),
+                          borderRadius: BorderRadius.circular(40),
                           border: Border.all(
                             color: Color(0xFFEEEEEE),
                             width: 2,
@@ -146,7 +147,7 @@ class _SearchResultPageWidgetState extends State<SearchResultPageWidget> {
             ),
             Expanded(
               child: Padding(
-                padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                 child: Builder(
                   builder: (context) {
                     if (searchResults1 == null) {
@@ -190,6 +191,7 @@ class _SearchResultPageWidgetState extends State<SearchResultPageWidget> {
                                     name: clothesItem.name,
                                     price: clothesItem.price,
                                     url: clothesItem.picture,
+                                    color: clothesItem.color,
                                   ),
                                 ),
                               );
@@ -211,8 +213,11 @@ class _SearchResultPageWidgetState extends State<SearchResultPageWidget> {
                                     ),
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(0),
-                                      child: Image.network(
-                                        clothesItem.picture,
+                                      child: CachedNetworkImage(
+                                        imageUrl: valueOrDefault<String>(
+                                          clothesItem.picture,
+                                          'https://www.iconspng.com/images/load/load.jpg',
+                                        ),
                                         fit: BoxFit.cover,
                                       ),
                                     ),

@@ -39,6 +39,19 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+  <key>CFBundleURLTypes</key>
+  <array>
+    <dict>
+      <key>CFBundleTypeRole</key>
+      <string>Editor</string>
+      <key>CFBundleURLName</key>
+      <string>com.flutterflow.david.braintree</string>
+      <key>CFBundleURLSchemes</key>
+      <array>
+        <string>com.flutterflow.david.braintree</string>
+      </array>
+    </dict>
+  </array>
 
 	<key>NSCameraUsageDescription</key>
 	<string>In order to take a picture or video, this app requires permission to access the camera.</string>

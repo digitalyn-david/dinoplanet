@@ -29,10 +29,15 @@ dependencies:
   built_value: ^8.0.6
   cached_network_image: ^3.1.0
   cloud_firestore: ^2.4.0
+  cloud_functions: ^3.0.0
   equatable: ^1.2.6
   firebase_auth: ^3.0.1
   firebase_core: ^1.4.0
   firebase_storage: ^10.0.1
+  flutter_braintree:
+    git:
+      url: git://github.com/FlutterFlow/flutter-braintree.git
+      ref: master
   flutter_facebook_auth: ^3.5.0
   flutter_spinkit: ^4.1.2+1
   font_awesome_flutter:
@@ -46,6 +51,7 @@ dependencies:
   page_transition:
   rxdart: ^0.26.0
   sign_in_with_apple: ^3.0.0
+  smooth_page_indicator:
   timeago:
   url_launcher:
 
