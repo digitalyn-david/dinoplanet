@@ -5,7 +5,6 @@ import '../product_page/product_page_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -263,11 +262,13 @@ class _SearchResultPageWidgetState extends State<SearchResultPageWidget> {
                                         Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
-                                            FaIcon(
-                                              FontAwesomeIcons.dollarSign,
-                                              color: FlutterFlowTheme
-                                                  .tertiaryColor,
-                                              size: 12,
+                                            Text(
+                                              'DKK ',
+                                              style: FlutterFlowTheme.bodyText1
+                                                  .override(
+                                                fontFamily: 'Source Sans Pro',
+                                                fontWeight: FontWeight.bold,
+                                              ),
                                             ),
                                             Text(
                                               clothesItem.price,

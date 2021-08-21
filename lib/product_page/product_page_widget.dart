@@ -5,6 +5,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../main.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -99,8 +100,8 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                   Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      Image.network(
-                        widget.url,
+                      CachedNetworkImage(
+                        imageUrl: widget.url,
                         width: MediaQuery.of(context).size.width,
                         height: 350,
                         fit: BoxFit.fitHeight,
@@ -112,6 +113,11 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Color(0x00EEEEEE),
+                          ),
+                        ),
                         Text(
                           widget.name,
                           style: FlutterFlowTheme.title1.override(
@@ -123,7 +129,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                         ),
                         Expanded(
                           child: Text(
-                            widget.price,
+                            'DKK',
                             textAlign: TextAlign.end,
                             style: FlutterFlowTheme.subtitle1.override(
                               fontFamily: 'Lexend Deca',

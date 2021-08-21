@@ -104,7 +104,6 @@ class _NavBarPageState extends State<NavBarPage> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.shopping_cart,
-              color: Color(0xFF9E9E9E),
               size: 26,
             ),
             label: 'Cart',
@@ -112,7 +111,6 @@ class _NavBarPageState extends State<NavBarPage> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.person,
-              color: Color(0xFF9E9E9E),
               size: 26,
             ),
             label: 'Profile',
